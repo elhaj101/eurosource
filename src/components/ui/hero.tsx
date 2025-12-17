@@ -13,7 +13,7 @@ interface HeroAction {
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
 }
 
-interface HeroProps extends React.HTMLAttributes<HTMLElement> {
+interface HeroProps {
   gradient?: boolean
   blur?: boolean
   title?: React.ReactNode
@@ -23,6 +23,7 @@ interface HeroProps extends React.HTMLAttributes<HTMLElement> {
   subtitleClassName?: string
   actionsClassName?: string
   backgroundImage?: string
+  className?: string
 }
 
 const Hero = React.forwardRef<HTMLElement, HeroProps>(
@@ -38,7 +39,6 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
       subtitleClassName,
       actionsClassName,
       backgroundImage,
-      ...props
     },
     ref,
   ) => {
@@ -51,7 +51,6 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
           className,
         )}
         style={backgroundImage ? { backgroundImage: `url("${backgroundImage}")` } : {}}
-        {...props}
       >
         {gradient && !backgroundImage && (
           <div className="absolute top-0 isolate z-0 flex w-screen flex-1 items-start justify-center">
