@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { CyclingCountry } from "@/components/ui/cycling-country"
 import Link from "next/link"
+import { getImagePath } from "@/lib/image-utils"
 
 interface HeroAction {
   label: string
@@ -50,7 +51,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
           backgroundImage && "bg-cover bg-center",
           className,
         )}
-        style={backgroundImage ? { backgroundImage: `url("${backgroundImage}")` } : {}}
+        style={backgroundImage ? { backgroundImage: `url("${getImagePath(backgroundImage)}")` } : {}}
       >
         {gradient && !backgroundImage && (
           <div className="absolute top-0 isolate z-0 flex w-screen flex-1 items-start justify-center">

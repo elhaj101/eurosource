@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { getImagePath } from "@/lib/image-utils";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -157,7 +158,7 @@ const Gallery4 = ({
                   <a href={item.href} className="group rounded-xl w-full">
                     <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9]">
                       <img
-                        src={item.image}
+                        src={getImagePath(item.image)}
                         alt={item.title}
                         className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                       />

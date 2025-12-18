@@ -1,4 +1,5 @@
 import { Globe, Handshake, Truck, FileCheck, CheckCircle, Headphones } from 'lucide-react'
+import { getImagePath } from '@/lib/image-utils'
 
 export function Features() {
     return (
@@ -6,7 +7,7 @@ export function Features() {
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
                 <div className="relative z-10 mx-auto max-w-2xl space-y-6 text-center md:space-y-12">
                     <div className="relative inline-block">
-                        <img src="/abstract-representation-german-flag-paint-brush-strokes-isolated-white-background-stroke-368550399-removebg-preview.png" alt="German Flag" className="absolute inset-0 w-96 h-auto object-contain opacity-20 -z-10 left-1/2 -translate-x-1/2 -top-12" />
+                        <img src={getImagePath("/abstract-representation-german-flag-paint-brush-strokes-isolated-white-background-stroke-368550399-removebg-preview.png")} alt="German Flag" className="absolute inset-0 w-96 h-auto object-contain opacity-20 -z-10 left-1/2 -translate-x-1/2 -top-12" />
                         <h2 className="text-balance text-4xl font-medium lg:text-5xl">Our Services</h2>
                     </div>
                     <p>EuroSource specializes in connecting you with the best suppliers from Germany and Europe. We handle every step of your sourcing journey with expertise and care.</p>
