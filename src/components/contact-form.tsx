@@ -25,7 +25,7 @@ export function ContactForm() {
     >
   ) => {
     const { name, value, type } = e.target;
-    
+
     if (type === "radio") {
       setFormData((prev) => ({
         ...prev,
@@ -44,7 +44,7 @@ export function ContactForm() {
 
     // Check honeypot
     if (formData.honeypot) {
-      console.log("Bot detected");
+      return;
       return;
     }
 
@@ -62,9 +62,9 @@ export function ContactForm() {
     setIsLoading(true);
 
     try {
-      console.log("Form submitted:", formData);
+
       setSubmitted(true);
-      
+
       setTimeout(() => {
         setSubmitted(false);
         setFormData({
@@ -243,7 +243,7 @@ export function ContactForm() {
                 <h3 className="text-lg font-semibold text-gray-300 mb-4">
                   Product Information <span className="text-sm text-gray-500">(Optional)</span>
                 </h3>
-                
+
                 {/* Product Name */}
                 <div className="mb-6">
                   <label

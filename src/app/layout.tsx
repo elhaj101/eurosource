@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ServiceWorkerProvider } from "@/hooks/use-service-worker";
 import { WebVitalsMonitor } from "@/components/web-vitals-monitor";
@@ -73,6 +74,20 @@ export default function RootLayout({
       >
         <WebVitalsMonitor />
         <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
+        {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MEASUREMENT_ID');
+          `}
+        </Script>
       </body>
     </html>
   );

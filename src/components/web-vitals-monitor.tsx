@@ -13,21 +13,21 @@ interface WebVitalsMetrics {
 
 const metrics: Partial<WebVitalsMetrics> = {}
 
-export function reportWebVitals(metric: { name: string; value: number }) {
+export function reportWebVitals(metric: { name: string; value: number; id: string }) {
   // Store metric
   metrics[metric.name as keyof WebVitalsMetrics] = metric.value
 
   // Send to analytics endpoint
   if (typeof window !== 'undefined') {
-    // You can send this to your analytics service
-    console.log(`${metric.name}:`, metric.value.toFixed(2), 'ms')
-
-    // Example: Send to custom endpoint
-    // fetch('/api/vitals', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(metric),
-    // }).catch(() => {})
+    // Send to Google Analytics if initialized
+    if ((window as any).gtag) {
+      (window as any).gtag('event', metric.name, {
+        event_category: 'Web Vitals',
+        event_label: metric.id,
+        value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+        non_interaction: true,
+      });
+    }
   }
 }
 
