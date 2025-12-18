@@ -8,13 +8,12 @@ export function useServiceWorker() {
       navigator.serviceWorker
         .register('/service-worker.js')
         .then((registration) => {
-        .then((registration) => {
           // Service Worker registered successfully
         })
-            .catch((error) => {
-              // Service Worker registration failed
-            })
-        }
+        .catch((error) => {
+          // Service Worker registration failed
+        })
+    }
   }, [])
 }
 
