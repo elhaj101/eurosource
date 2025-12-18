@@ -15,7 +15,7 @@ export function Features() {
                             height={600}
                             className="absolute inset-0 w-96 h-auto object-contain opacity-20 -z-10 left-1/2 -translate-x-1/2 -top-12"
                         />
-                        <h2 className="text-balance text-4xl font-medium lg:text-5xl">Our Services</h2>
+                        <h2 className="text-balance text-4xl font-medium lg:text-5xl text-gray-900">Our Services</h2>
                     </div>
                     <p>EuroSource specializes in connecting you with the best suppliers from Germany and Europe. We handle every step of your sourcing journey with expertise and care.</p>
                 </div>
@@ -24,14 +24,14 @@ export function Features() {
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
                             <Globe className="size-7 text-blue-600" />
-                            <h3 className="text-lg font-medium">Supplier Sourcing</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Supplier Sourcing</h3>
                         </div>
                         <p className="text-lg text-gray-600">We identify and connect you with the most reliable and innovative suppliers across Germany and Europe for your specific needs.</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <Handshake className="size-7 text-blue-600" />
-                            <h3 className="text-lg font-medium">Negotiation</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Negotiation</h3>
                         </div>
                         <p className="text-lg text-gray-600">Our expert negotiators work on your behalf to secure the best terms, pricing, and conditions with your suppliers.</p>
                     </div>
@@ -39,7 +39,7 @@ export function Features() {
                         <div className="flex items-center gap-2">
                             <Truck className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium">Logistics</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Logistics</h3>
                         </div>
                         <p className="text-lg text-gray-600">We manage the complete logistics chain, from warehousing to delivery, ensuring your products reach you on time.</p>
                     </div>
@@ -47,7 +47,7 @@ export function Features() {
                         <div className="flex items-center gap-2">
                             <FileCheck className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium">Customs Clearance</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Customs Clearance</h3>
                         </div>
                         <p className="text-lg text-gray-600">Our customs experts handle all documentation and regulatory requirements to ensure smooth border crossings.</p>
                     </div>
@@ -55,7 +55,7 @@ export function Features() {
                         <div className="flex items-center gap-2">
                             <CheckCircle className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium">Quality Control</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Quality Control</h3>
                         </div>
                         <p className="text-lg text-gray-600">We perform rigorous quality inspections at every stage to guarantee your products meet the highest standards.</p>
                     </div>
@@ -63,7 +63,7 @@ export function Features() {
                         <div className="flex items-center gap-2">
                             <Headphones className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium">24/7 Support</h3>
+                            <h3 className="text-lg font-medium text-gray-900">24/7 Support</h3>
                         </div>
                         <p className="text-lg text-gray-600">Our dedicated support team is available around the clock to assist with any questions or issues.</p>
                     </div>
