@@ -1,0 +1,142 @@
+{
+    "Navigation": {
+        "contact": "联系我们",
+        "about": "关于我们",
+        "careers": "招贤纳士",
+        "collaboration": "商务合作"
+    },
+    "Hero": {
+        "orderFrom": "订购产品来自",
+        "cyclingCountries": "循环国家"
+    },
+    "Services": {
+        "title": "我们的服务",
+        "subtitle": "EuroSource 致力于为您连接德国和欧洲最优质的供应商。我们以专业的知识和用心的服务处理您采购之旅的每一步。",
+        "sourcing": "供应商寻源",
+        "sourcingDesc": "我们根据您的具体需求，在德国和欧洲各地为您识别并连接最可靠、最具创新力的供应商。",
+        "negotiation": "商务谈判",
+        "negotiationDesc": "我们的谈判专家代表您与供应商争取最佳的条款、价格和条件。",
+        "logistics": "物流服务",
+        "logisticsDesc": "我们管理从仓储到交付的整个物流链，确保您的产品按时送达。",
+        "customs": "清关服务",
+        "customsDesc": "我们的海关专家处理所有文件和监管要求，确保顺利通关。",
+        "quality": "质量控制",
+        "qualityDesc": "我们在每个阶段进行严格的质量检查，以确保您的产品符合最高标准。",
+        "support": "24/7 支持",
+        "supportDesc": "我们专业的支持团队全天候为您提供帮助，解决任何问题或疑虑。"
+    },
+    "Gallery": {
+        "sectionTitle": "直接从欧洲企业进口",
+        "sectionDesc": "直接连接各行各业的顶级欧洲制造商和供应商。我们精心挑选的范围包括汽车零部件、工业设备、家具、包装解决方案和消费品。每个供应商都经过质量、可靠性和有竞争力的价格审查。立即开始您的采购之旅，接触欧洲最值得信赖的供应商。",
+        "readMore": "阅读更多",
+        "items": {
+            "automotive": {
+                "title": "优质德国车辆",
+                "description": "直接从德国制造商采购的优质汽车及零部件。我们确保所有产品符合国际标准并完好无损地送达。"
+            },
+            "electronics": {
+                "title": "工业贴标机",
+                "description": "来自法国制造商的精密贴标和包装设备。非常适合需要高速、精确贴标以及全面认证和技术支持的生产线。"
+            },
+            "textiles": {
+                "title": "家具与室内设计",
+                "description": "来自经过认证的波兰制造商的优质家具和室内设计产品。我们为住宅和商业项目处理端到端的质量控制和物流。"
+            },
+            "machinery": {
+                "title": "物料搬运设备",
+                "description": "从德国精密制造商精心挑选并出口的工业叉车和物料搬运机械，附带完整的文件和保修支持。"
+            },
+            "chemicals": {
+                "title": "玩具制造与塑料",
+                "description": "来自丹麦行业领导者的优质玩具制造和塑料产品。我们确保符合国际质量标准和合规要求的安全、认证产品。"
+            }
+        }
+    },
+    "Marketing": {
+        "whyChoose": "为什么选择 EuroSource？",
+        "whyChooseDesc": "与欧洲最值得信赖的采购解决方案合作，直接接触优质制造商和供应商。",
+        "directSourcing": "直接欧洲采购",
+        "directSourcingDesc": "我们将您与德国、法国、波兰和其他欧盟国家经过审查的制造商直接联系起来。",
+        "point1": "访问 100 万+ 已验证的欧洲供应商",
+        "point2": "具有竞争力的价格和有保证的质量",
+        "point3": "专门的物流和海关支持",
+        "testimonial": "作为一个服务于中东和非洲市场的进口商，寻找可靠的欧洲供应商一直是一个挑战，直到我们与 EuroSource 合作。他们处理从供应商审查到海关文件的所有事务，使我们的运营效率显著提高。",
+        "testimonialAuthor": "- Ahmad Hassan，采购经理"
+    },
+    "Contact": {
+        "title": "让我们开始吧",
+        "subtitle": "是时候取悦您的客户并加速您的业务发展了。",
+        "successTitle": "太棒了。收件箱见！",
+        "successSubtitle": "我们将很快回复您的后续步骤。",
+        "entityType": "您代表公司吗？",
+        "yesCompany": "是的，我代表一家公司",
+        "noIndividual": "不，我是个人",
+        "companyName": "公司名称",
+        "companyNamePlaceholder": "您的公司名称",
+        "country": "国家",
+        "countryPlaceholder": "您的国家",
+        "phone": "电话号码",
+        "phonePlaceholder": "+1 (555) 123-4567",
+        "email": "电子邮件",
+        "emailPlaceholder": "your@email.com",
+        "productInfo": "产品信息",
+        "optional": "（可选）",
+        "productName": "产品名称",
+        "productNamePlaceholder": "您的产品或服务名称",
+        "productDetails": "产品详情",
+        "productDetailsPlaceholder": "描述您的产品或服务...",
+        "budget": "预算 (美元)",
+        "selectBudget": "选择预算范围",
+        "contactMethod": "首选联系方式",
+        "submit": "预约咨询",
+        "sending": "发送中..."
+    },
+    "Footer": {
+        "brandDesc": "连接企业与欧洲最好的制造商和供应商。",
+        "headers": {
+            "company": "公司",
+            "contact": "联系信息",
+            "resources": "资源"
+        },
+        "links": {
+            "about": "关于我们",
+            "careers": "招贤纳士",
+            "collaboration": "商务合作",
+            "blog": "博客",
+            "faq": "常见问题",
+            "support": "支持"
+        },
+        "contact": {
+            "basedIn": "总部位于德国柏林"
+        },
+        "copyright": "© 2025 EuroSource. 保留所有权利。"
+    },
+    "Countries": {
+        "Germany": "德国",
+        "France": "法国",
+        "Italy": "意大利",
+        "Spain": "西班牙",
+        "Poland": "波兰",
+        "Netherlands": "荷兰",
+        "Belgium": "比利时",
+        "Greece": "希腊",
+        "Portugal": "葡萄牙",
+        "Austria": "奥地利",
+        "Sweden": "瑞典",
+        "Denmark": "丹麦",
+        "Finland": "芬兰",
+        "Ireland": "爱尔兰",
+        "Hungary": "匈牙利",
+        "Romania": "罗马尼亚",
+        "Bulgaria": "保加利亚",
+        "Croatia": "克罗地亚",
+        "Slovenia": "斯洛文尼亚",
+        "Slovakia": "斯洛伐克",
+        "Lithuania": "立陶宛",
+        "Latvia": "拉脱维亚",
+        "Estonia": "爱沙尼亚",
+        "Cyprus": "塞浦路斯",
+        "Luxembourg": "卢森堡",
+        "Malta": "马耳他"
+    }
+}

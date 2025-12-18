@@ -2,7 +2,10 @@ import { Globe, Handshake, Truck, FileCheck, CheckCircle, Headphones } from 'luc
 import Image from 'next/image'
 import { getImagePath } from '@/lib/image-utils'
 
+import { useTranslations } from 'next-intl';
+
 export function Features() {
+    const t = useTranslations('Services');
     return (
         <section className="py-12 md:py-20">
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
@@ -15,57 +18,57 @@ export function Features() {
                             height={600}
                             className="absolute inset-0 w-96 h-auto object-contain opacity-20 -z-10 left-1/2 -translate-x-1/2 -top-12"
                         />
-                        <h2 className="text-balance text-4xl font-medium lg:text-5xl text-gray-900">Our Services</h2>
+                        <h2 className="text-balance text-4xl font-medium lg:text-5xl text-gray-900">{t('title')}</h2>
                     </div>
-                    <p>EuroSource specializes in connecting you with the best suppliers from Germany and Europe. We handle every step of your sourcing journey with expertise and care.</p>
+                    <p>{t('subtitle')}</p>
                 </div>
 
                 <div className="relative mx-auto grid max-w-2xl lg:max-w-4xl divide-x divide-y border *:p-12 sm:grid-cols-2 lg:grid-cols-3">
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
                             <Globe className="size-7 text-blue-600" />
-                            <h3 className="text-lg font-medium text-gray-900">Supplier Sourcing</h3>
+                            <h3 className="text-lg font-medium text-gray-900">{t('sourcing')}</h3>
                         </div>
-                        <p className="text-lg text-gray-600">We identify and connect you with the most reliable and innovative suppliers across Germany and Europe for your specific needs.</p>
+                        <p className="text-lg text-gray-600">{t('sourcingDesc')}</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <Handshake className="size-7 text-blue-600" />
-                            <h3 className="text-lg font-medium text-gray-900">Negotiation</h3>
+                            <h3 className="text-lg font-medium text-gray-900">{t('negotiation')}</h3>
                         </div>
-                        <p className="text-lg text-gray-600">Our expert negotiators work on your behalf to secure the best terms, pricing, and conditions with your suppliers.</p>
+                        <p className="text-lg text-gray-600">{t('negotiationDesc')}</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <Truck className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium text-gray-900">Logistics</h3>
+                            <h3 className="text-lg font-medium text-gray-900">{t('logistics')}</h3>
                         </div>
-                        <p className="text-lg text-gray-600">We manage the complete logistics chain, from warehousing to delivery, ensuring your products reach you on time.</p>
+                        <p className="text-lg text-gray-600">{t('logisticsDesc')}</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <FileCheck className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium text-gray-900">Customs Clearance</h3>
+                            <h3 className="text-lg font-medium text-gray-900">{t('customs')}</h3>
                         </div>
-                        <p className="text-lg text-gray-600">Our customs experts handle all documentation and regulatory requirements to ensure smooth border crossings.</p>
+                        <p className="text-lg text-gray-600">{t('customsDesc')}</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <CheckCircle className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium text-gray-900">Quality Control</h3>
+                            <h3 className="text-lg font-medium text-gray-900">{t('quality')}</h3>
                         </div>
-                        <p className="text-lg text-gray-600">We perform rigorous quality inspections at every stage to guarantee your products meet the highest standards.</p>
+                        <p className="text-lg text-gray-600">{t('qualityDesc')}</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <Headphones className="size-7 text-blue-600" />
 
-                            <h3 className="text-lg font-medium text-gray-900">24/7 Support</h3>
+                            <h3 className="text-lg font-medium text-gray-900">{t('support')}</h3>
                         </div>
-                        <p className="text-lg text-gray-600">Our dedicated support team is available around the clock to assist with any questions or issues.</p>
+                        <p className="text-lg text-gray-600">{t('supportDesc')}</p>
                     </div>
                 </div>
             </div>

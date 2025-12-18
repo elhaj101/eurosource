@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from 'next-intl';
 
 export function ContactForm() {
+  const t = useTranslations('Contact');
   const [formData, setFormData] = useState({
     entityType: "", // "company" or "individual"
     companyName: "",
@@ -93,20 +95,20 @@ export function ContactForm() {
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              let's get started
+              {t('title')}
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              It's time to delight your customers and accelerate your business.
+              {t('subtitle')}
             </p>
           </div>
 
           {submitted ? (
             <div className="text-center py-8 space-y-2">
               <p className="text-lg font-semibold text-green-400">
-                Sweet. See you in the inbox!
+                {t('successTitle')}
               </p>
               <p className="text-gray-400">
-                We'll get back to you shortly with next steps.
+                {t('successSubtitle')}
               </p>
             </div>
           ) : (
@@ -125,7 +127,7 @@ export function ContactForm() {
               {/* Entity Type */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-4">
-                  ARE YOU REPRESENTING A COMPANY? <span className="text-red-500">*</span>
+                  {t('entityType')} <span className="text-red-500">*</span>
                 </label>
                 <div className="flex gap-6">
                   <label className="flex items-center cursor-pointer">
@@ -137,7 +139,7 @@ export function ContactForm() {
                       onChange={handleChange}
                       className="w-4 h-4 mr-3"
                     />
-                    <span className="text-gray-300">Yes, I represent a company</span>
+                    <span className="text-gray-300">{t('yesCompany')}</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -148,7 +150,7 @@ export function ContactForm() {
                       onChange={handleChange}
                       className="w-4 h-4 mr-3"
                     />
-                    <span className="text-gray-300">No, I'm an individual</span>
+                    <span className="text-gray-300">{t('noIndividual')}</span>
                   </label>
                 </div>
               </div>
@@ -162,7 +164,7 @@ export function ContactForm() {
                       htmlFor="companyName"
                       className="block text-sm font-medium text-gray-300 mb-2"
                     >
-                      COMPANY NAME <span className="text-red-500">*</span>
+                      {t('companyName')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -172,7 +174,7 @@ export function ContactForm() {
                       onChange={handleChange}
                       required={formData.entityType === "company"}
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                      placeholder="Your Company Name"
+                      placeholder={t('companyNamePlaceholder')}
                     />
                   </div>
 
@@ -182,7 +184,7 @@ export function ContactForm() {
                       htmlFor="country"
                       className="block text-sm font-medium text-gray-300 mb-2"
                     >
-                      COUNTRY <span className="text-red-500">*</span>
+                      {t('country')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -192,7 +194,7 @@ export function ContactForm() {
                       onChange={handleChange}
                       required={formData.entityType === "company"}
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                      placeholder="Your Country"
+                      placeholder={t('countryPlaceholder')}
                     />
                   </div>
 
@@ -202,7 +204,7 @@ export function ContactForm() {
                       htmlFor="phone"
                       className="block text-sm font-medium text-gray-300 mb-2"
                     >
-                      PHONE NUMBER <span className="text-red-500">*</span>
+                      {t('phone')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
@@ -212,7 +214,7 @@ export function ContactForm() {
                       onChange={handleChange}
                       required={formData.entityType === "company"}
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder={t('phonePlaceholder')}
                     />
                   </div>
                 </div>
@@ -224,7 +226,7 @@ export function ContactForm() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  EMAIL <span className="text-red-500">*</span>
+                  {t('email')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -234,14 +236,14 @@ export function ContactForm() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                  placeholder="your@email.com"
+                  placeholder={t('emailPlaceholder')}
                 />
               </div>
 
               {/* Product Information Section */}
               <div className="border-t border-gray-700 pt-6">
                 <h3 className="text-lg font-semibold text-gray-300 mb-4">
-                  Product Information <span className="text-sm text-gray-500">(Optional)</span>
+                  {t('productInfo')} <span className="text-sm text-gray-500">{t('optional')}</span>
                 </h3>
 
                 {/* Product Name */}
@@ -250,7 +252,7 @@ export function ContactForm() {
                     htmlFor="productName"
                     className="block text-sm font-medium text-gray-300 mb-2"
                   >
-                    PRODUCT NAME
+                    {t('productName')}
                   </label>
                   <input
                     type="text"
@@ -259,7 +261,7 @@ export function ContactForm() {
                     value={formData.productName}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder="Name of your product or service"
+                    placeholder={t('productNamePlaceholder')}
                   />
                 </div>
 
@@ -269,7 +271,7 @@ export function ContactForm() {
                     htmlFor="productDetails"
                     className="block text-sm font-medium text-gray-300 mb-2"
                   >
-                    PRODUCT DETAILS
+                    {t('productDetails')}
                   </label>
                   <textarea
                     id="productDetails"
@@ -278,7 +280,7 @@ export function ContactForm() {
                     onChange={handleChange}
                     rows={4}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition resize-none"
-                    placeholder="Describe your product or service..."
+                    placeholder={t('productDetailsPlaceholder')}
                   />
                 </div>
               </div>
@@ -289,7 +291,7 @@ export function ContactForm() {
                   htmlFor="budget"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  BUDGET (USD) <span className="text-red-500">*</span>
+                  {t('budget')} <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="budget"
@@ -299,7 +301,7 @@ export function ContactForm() {
                   required
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500 transition"
                 >
-                  <option value="">Select a budget range</option>
+                  <option value="">{t('selectBudget')}</option>
                   <option value="under-5k">Under $5,000</option>
                   <option value="5k-10k">$5,000 - $10,000</option>
                   <option value="10k-25k">$10,000 - $25,000</option>
@@ -312,7 +314,7 @@ export function ContactForm() {
               {/* Contact Method */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-4">
-                  PREFERRED CONTACT METHOD <span className="text-red-500">*</span>
+                  {t('contactMethod')} <span className="text-red-500">*</span>
                 </label>
                 <div className="flex gap-6">
                   <label className="flex items-center cursor-pointer">
@@ -346,7 +348,7 @@ export function ContactForm() {
                 disabled={isLoading}
                 className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-semibold transition duration-200 text-lg"
               >
-                {isLoading ? "Sending..." : "Book consultation"}
+                {isLoading ? t('sending') : t('submit')}
               </button>
             </form>
           )}

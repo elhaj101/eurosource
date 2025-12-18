@@ -1,0 +1,142 @@
+{
+    "Navigation": {
+        "contact": "Kontakt",
+        "about": "Über Uns",
+        "careers": "Karriere",
+        "collaboration": "Zusammenarbeit"
+    },
+    "Hero": {
+        "orderFrom": "Produkte bestellen aus",
+        "cyclingCountries": "Ländern im Wechsel"
+    },
+    "Services": {
+        "title": "Unsere Dienstleistungen",
+        "subtitle": "EuroSource ist darauf spezialisiert, Sie mit den besten Lieferanten aus Deutschland und Europa zu verbinden. Wir kümmern uns mit Fachwissen und Sorgfalt um jeden Schritt Ihrer Beschaffungsreise.",
+        "sourcing": "Lieferantenbeschaffung",
+        "sourcingDesc": "Wir identifizieren und verbinden Sie mit den zuverlässigsten und innovativsten Lieferanten in ganz Deutschland und Europa für Ihre spezifischen Bedürfnisse.",
+        "negotiation": "Verhandlung",
+        "negotiationDesc": "Unsere erfahrenen Verhandlungsführer setzen sich für Sie ein, um die besten Konditionen, Preise und Bedingungen mit Ihren Lieferanten zu sichern.",
+        "logistics": "Logistik",
+        "logisticsDesc": "Wir managen die gesamte Logistikkette, von der Lagerung bis zur Lieferung, und stellen sicher, dass Ihre Produkte pünktlich bei Ihnen ankommen.",
+        "customs": "Zollabfertigung",
+        "customsDesc": "Unsere Zollexperten kümmern sich um alle Dokumente und behördlichen Anforderungen, um reibungslose Grenzübertritte zu gewährleisten.",
+        "quality": "Qualitätskontrolle",
+        "qualityDesc": "Wir führen in jeder Phase strenge Qualitätsprüfungen durch, um zu garantieren, dass Ihre Produkte den höchsten Standards entsprechen.",
+        "support": "24/7 Support",
+        "supportDesc": "Unser engagiertes Support-Team steht Ihnen rund um die Uhr zur Verfügung, um bei Fragen oder Problemen zu helfen."
+    },
+    "Gallery": {
+        "sectionTitle": "Direkimport von europäischen Unternehmen",
+        "sectionDesc": "Verbinden Sie sich direkt mit führenden europäischen Herstellern und Lieferanten verschiedener Branchen. Unsere kuratierte Auswahl umfasst Automobilkomponenten, Industrieausrüstung, Möbel, Verpackungslösungen und Konsumgüter. Jeder Lieferant wurde auf Qualität, Zuverlässigkeit und wettbewerbsfähige Preise geprüft. Beginnen Sie Ihre Beschaffungsreise heute mit Zugang zu Europas vertrauenswürdigsten Lieferanten.",
+        "readMore": "Mehr lesen",
+        "items": {
+            "automotive": {
+                "title": "Premium Deutsche Fahrzeuge",
+                "description": "Qualitätsfahrzeuge und -komponenten direkt von deutschen Herstellern bezogen. Wir stellen sicher, dass alle Produkte internationalen Standards entsprechen und in einwandfreiem Zustand ankommen."
+            },
+            "electronics": {
+                "title": "Industrielle Etikettiermaschinen",
+                "description": "Präzisionsetikettierungs- und Verpackungsmaschinen von französischen Herstellern. Perfekt für Produktionslinien, die Hochgeschwindigkeits-, genaue Etikettierung mit vollständiger Zertifizierung und technischem Support erfordern."
+            },
+            "textiles": {
+                "title": "Möbel & Innendesign",
+                "description": "Premium-Möbel und Innendesign-Produkte von zertifizierten polnischen Herstellern. Wir kümmern uns um Qualitätskontrolle und Logistik von A bis Z für Wohn- und Gewerbeprojekte."
+            },
+            "machinery": {
+                "title": "Materialtransportgeräte",
+                "description": "Industriestapler und Materialtransportmaschinen, sorgfältig ausgewählt und exportiert von deutschen Präzisionsherstellern mit vollständiger Dokumentation und Garantiesupport."
+            },
+            "chemicals": {
+                "title": "Spielzeugherstellung & Kunststoffe",
+                "description": "Premium-Spielzeugherstellung und Kunststoffprodukte von dänischen Branchenführern. Wir gewährleisten sichere, zertifizierte Produkte, die internationale Qualitätsstandards und Compliance-Anforderungen erfüllen."
+            }
+        }
+    },
+    "Marketing": {
+        "whyChoose": "Warum EuroSource wählen?",
+        "whyChooseDesc": "Arbeiten Sie mit Europas vertrauenswürdigster Beschaffungslösung zusammen für direkten Zugang zu Premium-Herstellern und Lieferanten.",
+        "directSourcing": "Direkte Europäische Beschaffung",
+        "directSourcingDesc": "Wir verbinden Sie direkt mit geprüften Herstellern in Deutschland, Frankreich, Polen und anderen EU-Ländern.",
+        "point1": "Zugang zu 1+ Million verifizierten europäischen Lieferanten",
+        "point2": "Wettbewerbsfähige Preise mit garantierter Qualität",
+        "point3": "Dedizierter Logistik- und Zollsupport",
+        "testimonial": "Als Importeur, der Märkte im Nahen Osten und Afrika bedient, war es eine Herausforderung, zuverlässige europäische Lieferanten zu finden, bis wir mit EuroSource zusammenarbeiteten. Sie kümmern sich um alles, von der Lieferantenprüfung bis zur Zolldokumentation, was unsere Abläufe erheblich effizienter macht.",
+        "testimonialAuthor": "- Ahmad Hassan, Beschaffungsmanager"
+    },
+    "Contact": {
+        "title": "Lassen Sie uns beginnen",
+        "subtitle": "Es ist Zeit, Ihre Kunden zu begeistern und Ihr Geschäft zu beschleunigen.",
+        "successTitle": "Super. Wir sehen uns im Posteingang!",
+        "successSubtitle": "Wir melden uns in Kürze mit den nächsten Schritten bei Ihnen.",
+        "entityType": "VERTRETEN SIE EIN UNTERNEHMEN?",
+        "yesCompany": "Ja, ich vertrete ein Unternehmen",
+        "noIndividual": "Nein, ich bin eine Privatperson",
+        "companyName": "FIRMENNAME",
+        "companyNamePlaceholder": "Ihr Firmenname",
+        "country": "LAND",
+        "countryPlaceholder": "Ihr Land",
+        "phone": "TELEFONNUMMER",
+        "phonePlaceholder": "+1 (555) 123-4567",
+        "email": "E-MAIL",
+        "emailPlaceholder": "ihre@email.com",
+        "productInfo": "Produktinformationen",
+        "optional": "(Optional)",
+        "productName": "PRODUKTNAME",
+        "productNamePlaceholder": "Name Ihres Produkts oder Dienstleistung",
+        "productDetails": "PRODUKTDETAILS",
+        "productDetailsPlaceholder": "Beschreiben Sie Ihr Produkt oder Ihre Dienstleistung...",
+        "budget": "BUDGET (USD)",
+        "selectBudget": "Wählen Sie einen Budgetbereich",
+        "contactMethod": "BEVORZUGTE KONTAKTMETHODE",
+        "submit": "Beratung buchen",
+        "sending": "Senden..."
+    },
+    "Footer": {
+        "brandDesc": "Verbindet Unternehmen mit Europas besten Herstellern und Lieferanten.",
+        "headers": {
+            "company": "Unternehmen",
+            "contact": "Kontaktinformationen",
+            "resources": "Ressourcen"
+        },
+        "links": {
+            "about": "Über Uns",
+            "careers": "Karriere",
+            "collaboration": "Zusammenarbeit",
+            "blog": "Blog",
+            "faq": "FAQ",
+            "support": "Support"
+        },
+        "contact": {
+            "basedIn": "Ansässig in Deutschland, Berlin"
+        },
+        "copyright": "© 2025 EuroSource. Alle Rechte vorbehalten."
+    },
+    "Countries": {
+        "Germany": "Deutschland",
+        "France": "Frankreich",
+        "Italy": "Italien",
+        "Spain": "Spanien",
+        "Poland": "Polen",
+        "Netherlands": "Niederlande",
+        "Belgium": "Belgien",
+        "Greece": "Griechenland",
+        "Portugal": "Portugal",
+        "Austria": "Österreich",
+        "Sweden": "Schweden",
+        "Denmark": "Dänemark",
+        "Finland": "Finnland",
+        "Ireland": "Irland",
+        "Hungary": "Ungarn",
+        "Romania": "Rumänien",
+        "Bulgaria": "Bulgarien",
+        "Croatia": "Kroatien",
+        "Slovenia": "Slowenien",
+        "Slovakia": "Slowakei",
+        "Lithuania": "Litauen",
+        "Latvia": "Lettland",
+        "Estonia": "Estland",
+        "Cyprus": "Zypern",
+        "Luxembourg": "Luxemburg",
+        "Malta": "Malta"
+    }
+}

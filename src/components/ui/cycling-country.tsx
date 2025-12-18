@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslations } from 'next-intl';
 
 const EU_COUNTRIES = [
   { name: "Germany", colors: "from-black via-red-600 to-yellow-400" },
@@ -33,6 +34,7 @@ const EU_COUNTRIES = [
 ]
 
 export function CyclingCountry() {
+  const t = useTranslations('Countries');
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -55,7 +57,7 @@ export function CyclingCountry() {
         transition={{ duration: 0.5, ease: "easeInOut" }}
         className={`bg-gradient-to-r ${current.colors} bg-clip-text text-transparent font-bold`}
       >
-        {current.name}
+        {t(current.name)}
       </motion.span>
     </AnimatePresence>
   )

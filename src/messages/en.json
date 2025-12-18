@@ -1,0 +1,142 @@
+{
+    "Navigation": {
+        "contact": "Contact Us",
+        "about": "About Us",
+        "careers": "Careers",
+        "collaboration": "Collaboration"
+    },
+    "Hero": {
+        "orderFrom": "Order products from",
+        "cyclingCountries": "cycling countries"
+    },
+    "Services": {
+        "title": "Our Services",
+        "subtitle": "EuroSource specializes in connecting you with the best suppliers from Germany and Europe. We handle every step of your sourcing journey with expertise and care.",
+        "sourcing": "Supplier Sourcing",
+        "sourcingDesc": "We identify and connect you with the most reliable and innovative suppliers across Germany and Europe for your specific needs.",
+        "negotiation": "Negotiation",
+        "negotiationDesc": "Our expert negotiators work on your behalf to secure the best terms, pricing, and conditions with your suppliers.",
+        "logistics": "Logistics",
+        "logisticsDesc": "We manage the complete logistics chain, from warehousing to delivery, ensuring your products reach you on time.",
+        "customs": "Customs Clearance",
+        "customsDesc": "Our customs experts handle all documentation and regulatory requirements to ensure smooth border crossings.",
+        "quality": "Quality Control",
+        "qualityDesc": "We perform rigorous quality inspections at every stage to guarantee your products meet the highest standards.",
+        "support": "24/7 Support",
+        "supportDesc": "Our dedicated support team is available around the clock to assist with any questions or issues."
+    },
+    "Gallery": {
+        "sectionTitle": "Import from European companies directly",
+        "sectionDesc": "Connect directly with top European manufacturers and suppliers across multiple industries. Our curated selection includes automotive components, industrial equipment, furniture, packaging solutions, and consumer products. Each supplier has been vetted for quality, reliability, and competitive pricing. Start your sourcing journey today with access to Europe's most trusted suppliers.",
+        "readMore": "Read more",
+        "items": {
+            "automotive": {
+                "title": "Premium German Vehicles",
+                "description": "Quality automotive vehicles and components sourced directly from German manufacturers. We ensure all products meet international standards and arrive in perfect condition."
+            },
+            "electronics": {
+                "title": "Industrial Labeling Machines",
+                "description": "Precision labeling and packaging equipment from French manufacturers. Perfect for production lines requiring high-speed, accurate labeling with full certification and technical support."
+            },
+            "textiles": {
+                "title": "Furniture & Interior Design",
+                "description": "Premium furniture and interior design products from certified Polish manufacturers. We handle quality control and logistics end-to-end for residential and commercial projects."
+            },
+            "machinery": {
+                "title": "Material Handling Equipment",
+                "description": "Industrial forklifts and material handling machinery carefully selected and exported from German precision manufacturers with complete documentation and warranty support."
+            },
+            "chemicals": {
+                "title": "Toy Manufacturing & Plastics",
+                "description": "Premium toy manufacturing and plastic products sourced from Danish industry leaders. We ensure safe, certified products meeting international quality standards and compliance requirements."
+            }
+        }
+    },
+    "Marketing": {
+        "whyChoose": "Why Choose EuroSource?",
+        "whyChooseDesc": "Partner with Europe's most trusted sourcing solution for direct access to premium manufacturers and suppliers.",
+        "directSourcing": "Direct European Sourcing",
+        "directSourcingDesc": "We connect you directly with vetted manufacturers across Germany, France, Poland, and other EU countries.",
+        "point1": "Access to 1+ million verified European suppliers",
+        "point2": "Competitive pricing with guaranteed quality",
+        "point3": "Dedicated logistics and customs support",
+        "testimonial": "As an importer serving Middle Eastern and African markets, finding reliable European suppliers was challenging until we partnered with EuroSource. They handle everything from supplier vetting to customs documentation, making our operations significantly more efficient.",
+        "testimonialAuthor": "- Ahmad Hassan, Procurement Manager"
+    },
+    "Contact": {
+        "title": "let's get started",
+        "subtitle": "It's time to delight your customers and accelerate your business.",
+        "successTitle": "Sweet. See you in the inbox!",
+        "successSubtitle": "We'll get back to you shortly with next steps.",
+        "entityType": "ARE YOU REPRESENTING A COMPANY?",
+        "yesCompany": "Yes, I represent a company",
+        "noIndividual": "No, I'm an individual",
+        "companyName": "COMPANY NAME",
+        "companyNamePlaceholder": "Your Company Name",
+        "country": "COUNTRY",
+        "countryPlaceholder": "Your Country",
+        "phone": "PHONE NUMBER",
+        "phonePlaceholder": "+1 (555) 123-4567",
+        "email": "EMAIL",
+        "emailPlaceholder": "your@email.com",
+        "productInfo": "Product Information",
+        "optional": "(Optional)",
+        "productName": "PRODUCT NAME",
+        "productNamePlaceholder": "Name of your product or service",
+        "productDetails": "PRODUCT DETAILS",
+        "productDetailsPlaceholder": "Describe your product or service...",
+        "budget": "BUDGET (USD)",
+        "selectBudget": "Select a budget range",
+        "contactMethod": "PREFERRED CONTACT METHOD",
+        "submit": "Book consultation",
+        "sending": "Sending..."
+    },
+    "Footer": {
+        "brandDesc": "Connecting businesses with Europe's finest manufacturers and suppliers.",
+        "headers": {
+            "company": "Company",
+            "contact": "Contact Information",
+            "resources": "Resources"
+        },
+        "links": {
+            "about": "About Us",
+            "careers": "Careers",
+            "collaboration": "Collaboration",
+            "blog": "Blog",
+            "faq": "FAQ",
+            "support": "Support"
+        },
+        "contact": {
+            "basedIn": "Based in Germany, Berlin"
+        },
+        "copyright": "© 2025 EuroSource. All rights reserved."
+    },
+    "Countries": {
+        "Germany": "Germany",
+        "France": "France",
+        "Italy": "Italy",
+        "Spain": "Spain",
+        "Poland": "Poland",
+        "Netherlands": "Netherlands",
+        "Belgium": "Belgium",
+        "Greece": "Greece",
+        "Portugal": "Portugal",
+        "Austria": "Austria",
+        "Sweden": "Sweden",
+        "Denmark": "Denmark",
+        "Finland": "Finland",
+        "Ireland": "Ireland",
+        "Hungary": "Hungary",
+        "Romania": "Romania",
+        "Bulgaria": "Bulgaria",
+        "Croatia": "Croatia",
+        "Slovenia": "Slovenia",
+        "Slovakia": "Slovakia",
+        "Lithuania": "Lithuania",
+        "Latvia": "Latvia",
+        "Estonia": "Estonia",
+        "Cyprus": "Cyprus",
+        "Luxembourg": "Luxembourg",
+        "Malta": "Malta"
+    }
+}

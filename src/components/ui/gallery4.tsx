@@ -27,59 +27,65 @@ export interface Gallery4Props {
   items?: Gallery4Item[];
 }
 
-const data = [
-  {
-    id: "automotive",
-    title: "Premium German Vehicles",
-    description:
-      "Quality automotive vehicles and components sourced directly from German manufacturers. We ensure all products meet international standards and arrive in perfect condition.",
-    href: "#",
-    image: "/Mercedes-1_1920x1080.webp",
-    flag: "🇩🇪",
-  },
-  {
-    id: "electronics",
-    title: "Industrial Labeling Machines",
-    description:
-      "Precision labeling and packaging equipment from French manufacturers. Perfect for production lines requiring high-speed, accurate labeling with full certification and technical support.",
-    href: "#",
-    image: "/labeling-machine.webp",
-    flag: "🇫🇷",
-  },
-  {
-    id: "textiles",
-    title: "Furniture & Interior Design",
-    description:
-      "Premium furniture and interior design products from certified Polish manufacturers. We handle quality control and logistics end-to-end for residential and commercial projects.",
-    href: "#",
-    image: "/furniture-production.webp",
-    flag: "🇵🇱",
-  },
-  {
-    id: "machinery",
-    title: "Material Handling Equipment",
-    description:
-      "Industrial forklifts and material handling machinery carefully selected and exported from German precision manufacturers with complete documentation and warranty support.",
-    href: "#",
-    image: "/forklift.webp",
-    flag: "🇩🇪",
-  },
-  {
-    id: "chemicals",
-    title: "Toy Manufacturing & Plastics",
-    description:
-      "Premium toy manufacturing and plastic products sourced from Danish industry leaders. We ensure safe, certified products meeting international quality standards and compliance requirements.",
-    href: "#",
-    image: "/legoland-lego-fabrik.webp",
-    flag: "🇩🇰",
-  },
-];
+import { useTranslations } from 'next-intl';
 
 const Gallery4 = ({
-  title = "Our Products",
-  description = "Explore our curated selection of premium products sourced directly from Europe's leading manufacturers. From automotive to manufacturing, we provide quality goods with full certification and reliable delivery.",
-  items = data,
+  title,
+  description,
+  items,
 }: Gallery4Props) => {
+  const t = useTranslations('Gallery');
+
+  // Use passed props, or fallback to translations
+  const displayTitle = title || t('sectionTitle');
+  const displayDescription = description || t('sectionDesc');
+
+  // If no items passed, generate default data with translations
+  const defaultItems = [
+    {
+      id: "automotive",
+      title: t('items.automotive.title'),
+      description: t('items.automotive.description'),
+      href: "#",
+      image: "/Mercedes-1_1920x1080.webp",
+      flag: "🇩🇪",
+    },
+    {
+      id: "electronics",
+      title: t('items.electronics.title'),
+      description: t('items.electronics.description'),
+      href: "#",
+      image: "/labeling-machine.webp",
+      flag: "🇫🇷",
+    },
+    {
+      id: "textiles",
+      title: t('items.textiles.title'),
+      description: t('items.textiles.description'),
+      href: "#",
+      image: "/furniture-production.webp",
+      flag: "🇵🇱",
+    },
+    {
+      id: "machinery",
+      title: t('items.machinery.title'),
+      description: t('items.machinery.description'),
+      href: "#",
+      image: "/forklift.webp",
+      flag: "🇩🇪",
+    },
+    {
+      id: "chemicals",
+      title: t('items.chemicals.title'),
+      description: t('items.chemicals.description'),
+      href: "#",
+      image: "/legoland-lego-fabrik.webp",
+      flag: "🇩🇰",
+    },
+  ];
+
+  const displayItems = items || defaultItems;
+
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -107,9 +113,9 @@ const Gallery4 = ({
         <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
           <div className="flex flex-col gap-4">
             <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl">
-              {title}
+              {displayTitle}
             </h2>
-            <p className="max-w-lg text-muted-foreground">{description}</p>
+            <p className="max-w-lg text-muted-foreground">{displayDescription}</p>
           </div>
           <div className="hidden shrink-0 gap-2 md:flex">
             <Button
@@ -149,7 +155,7 @@ const Gallery4 = ({
           }}
         >
           <CarouselContent className="ml-0 2xl:ml-[max(8rem,calc(50vw-700px))] 2xl:mr-[max(0rem,calc(50vw-700px))]">
-            {items.map((item) => (
+            {displayItems.map((item) => (
               <CarouselItem
                 key={item.id}
                 className="max-w-[320px] pl-[20px] lg:max-w-[360px]"
@@ -173,7 +179,7 @@ const Gallery4 = ({
                           </div>
                         </div>
                         <div className="mt-4 flex items-center text-sm [text-shadow:_0_2px_8px_rgba(0,0,0,0.7)]">
-                          Read more{" "}
+                          {t('readMore')}{" "}
                           <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
@@ -188,12 +194,11 @@ const Gallery4 = ({
           </CarouselContent>
         </Carousel>
         <div className="mt-8 flex justify-center gap-2">
-          {items.map((_, index) => (
+          {displayItems.map((_, index) => (
             <button
               key={index}
-              className={`h-2 w-2 rounded-full transition-colors ${
-                currentSlide === index ? "bg-primary" : "bg-primary/20"
-              }`}
+              className={`h-2 w-2 rounded-full transition-colors ${currentSlide === index ? "bg-primary" : "bg-primary/20"
+                }`}
               onClick={() => carouselApi?.scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
             />

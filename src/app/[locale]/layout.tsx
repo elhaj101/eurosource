@@ -3,7 +3,14 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ServiceWorkerProvider } from "@/hooks/use-service-worker";
 import { WebVitalsMonitor } from "@/components/web-vitals-monitor";
-import "./globals.css";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import "../globals.css";
+
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'de' }, { locale: 'ar' }, { locale: 'zh' }];
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,13 +64,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
+  const { locale } = await params;
+
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  // Ensure that the incoming `locale` is valid
+  if (!['en', 'de', 'ar', 'zh'].includes(locale)) {
+    notFound();
+  }
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,8 +95,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <WebVitalsMonitor />
-        <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
+        <NextIntlClientProvider messages={messages}>
+          <WebVitalsMonitor />
+          <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
+        </NextIntlClientProvider>
         {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
