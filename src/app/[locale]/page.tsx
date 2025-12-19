@@ -51,11 +51,7 @@ export default function Home() {
       {/* Hero Section */}
       <Hero
         backgroundImage="/shipping-container-eu-2.webp"
-        title={locale === 'ar' ? (
-          <><span className="inline-block w-48"><CyclingCountry /></span> {tHero('orderFrom')}</>
-        ) : (
-          <>{tHero('orderFrom')} <span className="inline-block w-48"><CyclingCountry /></span></>
-        )}
+        title={<>{tHero('orderFrom')} <span className="inline-block w-48"><CyclingCountry /></span></>}
         gradient={false}
         titleClassName="text-5xl md:text-6xl lg:text-7xl text-white drop-shadow-lg"
         className="min-h-screen"
