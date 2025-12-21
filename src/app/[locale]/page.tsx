@@ -1,14 +1,15 @@
 "use client";
 
 import { useTranslations, useLocale } from 'next-intl';
-import { LanguageSwitcher } from "@/components/language-switcher";
+import { LanguageSelectorDropdown } from "@/components/ui/language-selector-dropdown";
 
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { Hero } from "@/components/ui/hero";
 import { CyclingCountry } from "@/components/ui/cycling-country";
 import { Features } from "@/components/ui/features-4";
-import { Gallery4 } from "@/components/ui/gallery4";
+import { EuropeanExports } from "@/components/ui/european-exports";
+import { QualityGuaranteeSection } from "@/components/ui/quality-badge";
 import { ContactForm } from "@/components/contact-form";
 import { IconCloudSkeleton } from "@/components/suspense-boundary";
 
@@ -38,12 +39,15 @@ export default function Home() {
         <h1 className="text-3xl md:text-4xl font-bold text-white">EuroSource</h1>
       </div>
 
-      <LanguageSwitcher />
+      {/* Language Selector - Fixed position */}
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40">
+        <LanguageSelectorDropdown />
+      </div>
 
       {/* Contact Button - Fixed top-right */}
       <button
         onClick={scrollToForm}
-        className="btn-donate fixed top-6 right-6 z-40"
+        className="fixed top-6 right-6 z-40 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-md transition-colors duration-200 shadow-sm"
       >
         {tNav('contact')}
       </button>
@@ -60,11 +64,6 @@ export default function Home() {
       {/* Features Section */}
       <section className="w-full bg-gray-50 relative">
         <Features />
-      </section>
-
-      {/* Gallery Section */}
-      <section className="w-full bg-white">
-        <Gallery4 />
       </section>
 
       {/* Marketing Body 2 */}
@@ -93,7 +92,7 @@ export default function Home() {
       </section>
 
       {/* Marketing Body 3 - Tech Stack */}
-      <section id="marketing3" className="py-0 md:py-0 bg-gray-50">
+      <section id="marketing3" className="py-0 md:py-0 bg-white">
         <div className="container mx-auto max-w-2xl px-0">
           <div className="flex justify-center">
             <Suspense fallback={<IconCloudSkeleton />}>
@@ -102,6 +101,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* European Exports Section */}
+      <section className="w-full">
+        <EuropeanExports />
+      </section>
+
+      {/* Quality Guarantee Section */}
+      <QualityGuaranteeSection />
 
       {/* Contact Form */}
       <div id="contact-form">

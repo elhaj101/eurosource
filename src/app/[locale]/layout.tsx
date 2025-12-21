@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { ServiceWorkerProvider } from "@/hooks/use-service-worker";
 import { WebVitalsMonitor } from "@/components/web-vitals-monitor";
 import { NextIntlClientProvider } from 'next-intl';
@@ -12,14 +12,10 @@ export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }, { locale: 'ar' }, { locale: 'zh' }];
 }
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const viewport: Viewport = {
@@ -93,7 +89,8 @@ export default async function RootLayout({
         <link rel="canonical" href="https://eurosource.de" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-dm-sans), system-ui, sans-serif' }}
       >
         <NextIntlClientProvider messages={messages}>
           <WebVitalsMonitor />

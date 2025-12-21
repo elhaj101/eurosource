@@ -8,8 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans);
 }
 
 /* Force light mode values even if user prefers dark mode */
@@ -23,7 +22,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-weight: 600;
 }
 
 @keyframes fadeIn {
@@ -40,49 +44,19 @@ body {
   .animate-fade-in {
     animation: fadeIn 1s ease-in-out;
   }
+  
+  .animate-dropdown-fade-in {
+    animation: dropdownFadeIn 0.15s ease-out;
+  }
 }
 
-.btn-donate {
-  --clr-font-main: hsla(0 0% 20% / 100);
-  --btn-bg-1: hsla(194 100% 69% / 1);
-  --btn-bg-2: hsla(217 100% 56% / 1);
-  --btn-bg-color: hsla(360 100% 100% / 1);
-  --radii: 0.5em;
-  cursor: pointer;
-  padding: 0.9em 1.4em;
-  min-width: 120px;
-  min-height: 44px;
-  font-size: var(--size, 1rem);
-  font-weight: 500;
-  transition: 0.8s;
-  background-size: 280% auto;
-  background-image: linear-gradient(325deg,
-      var(--btn-bg-2) 0%,
-      var(--btn-bg-1) 55%,
-      var(--btn-bg-2) 90%);
-  border: none;
-  border-radius: var(--radii);
-  color: var(--btn-bg-color);
-  box-shadow:
-    0px 0px 20px rgba(71, 184, 255, 0.5),
-    0px 5px 5px -1px rgba(58, 125, 233, 0.25),
-    inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-    inset -4px -4px 8px rgba(19, 95, 216, 0.35);
-}
-
-.btn-donate:hover {
-  background-position: right top;
-}
-
-.btn-donate:is(:focus, :focus-visible, :active) {
-  outline: none;
-  box-shadow:
-    0 0 0 3px var(--btn-bg-color),
-    0 0 0 6px var(--btn-bg-2);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-donate {
-    transition: linear;
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
