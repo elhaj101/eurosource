@@ -2,6 +2,7 @@
 
 import React, { MouseEvent, useEffect, useRef, useState } from "react";
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 const identityMatrix =
   "1, 0, 0, 0, " +
@@ -16,9 +17,10 @@ const minScale = 0.97;
 
 interface QualityBadgeProps {
   title?: string;
+  isRtl?: boolean;
 }
 
-export const QualityBadge = ({ title = "Quality Guaranteed" }: QualityBadgeProps) => {
+export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: QualityBadgeProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [firstOverlayPosition, setFirstOverlayPosition] = useState<number>(0);
   const [matrix, setMatrix] = useState<string>(identityMatrix);
@@ -195,8 +197,8 @@ export const QualityBadge = ({ title = "Quality Guaranteed" }: QualityBadgeProps
           <rect width="300" height="70" rx="12" fill="url(#qualityGradient)" />
           <rect x="3" y="3" width="294" height="64" rx="10" fill="transparent" stroke="#475569" strokeWidth="1" />
           
-          {/* Shield Icon */}
-          <g transform="translate(20, 17)">
+          {/* Shield Icon - centered */}
+          <g transform="translate(138, 12)">
             <path 
               d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" 
               fill="none" 
@@ -215,10 +217,15 @@ export const QualityBadge = ({ title = "Quality Guaranteed" }: QualityBadgeProps
             />
           </g>
           
-          <text fontFamily="system-ui, -apple-system, sans-serif" fontSize="11" fontWeight="500" fill="#94a3b8" x="60" y="28">
-            EUROSOURCE
-          </text>
-          <text fontFamily="system-ui, -apple-system, sans-serif" fontSize="18" fontWeight="700" fill="#f8fafc" x="60" y="52">
+          <text 
+            fontFamily="system-ui, -apple-system, sans-serif" 
+            fontSize="18" 
+            fontWeight="700" 
+            fill="#f8fafc" 
+            x="150" 
+            y="58"
+            textAnchor="middle"
+          >
             {title}
           </text>
           
@@ -262,12 +269,14 @@ export const QualityBadge = ({ title = "Quality Guaranteed" }: QualityBadgeProps
 
 export function QualityGuaranteeSection() {
   const t = useTranslations('QualityBadge');
+  const locale = useLocale();
+  const isRtl = locale === 'ar';
   
   return (
     <section className="w-full py-16 lg:py-20 bg-white">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center justify-center text-center">
-          <QualityBadge title={t('title')} />
+          <QualityBadge title={t('title')} isRtl={isRtl} />
           <p className="mt-6 text-gray-600 max-w-md">
             {t('subtitle')}
           </p>
