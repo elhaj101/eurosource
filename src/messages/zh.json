@@ -111,6 +111,47 @@
         },
         "copyright": "© 2025 EuroSource. 保留所有权利。"
     },
+    "EuropeanExports": {
+        "title": "欧洲出口什么？",
+        "subtitle": "欧洲在高价值领域引领全球贸易。通过EuroSource直接进入这些行业。",
+        "examplesLabel": "示例：",
+        "industries": {
+            "engineering": {
+                "title": "精密工程与工业机械",
+                "examples": "工业涡轮机、叉车、发电机",
+                "description": "欧洲可靠、高规格工业设备的动力源，对全球基础设施发展至关重要。"
+            },
+            "fashion": {
+                "title": "奢侈时尚与设计师商品",
+                "examples": "皮革手袋、高级定制纺织品、精品腕表",
+                "description": "获取享有盛誉的欧洲工艺和高端纺织品、皮革及优质配饰的前沿设计。"
+            },
+            "automotive": {
+                "title": "高端汽车与出行解决方案",
+                "examples": "汽车、电动车电池、先进安全系统",
+                "description": "汽车工程领域的领导地位、先进的电动车组件和创新的出行解决方案。"
+            },
+            "food": {
+                "title": "优质食品与饮料",
+                "examples": "巧克力、意大利橄榄油、手工奶酪",
+                "description": "探索高需求、高品质的欧洲品牌，从巧克力和烈酒到手工奶酪和有机产品。"
+            },
+            "pharma": {
+                "title": "先进制药与生物技术",
+                "examples": "疫苗、专科药品、生物技术套件",
+                "description": "欧盟增长最快的高科技领域，提供世界一流的医疗治疗和研究。"
+            },
+            "energy": {
+                "title": "绿色能源与可持续技术",
+                "examples": "太阳能电池板、风力涡轮机叶片、储能系统",
+                "description": "欧洲在面向未来的可再生能源组件方面的专业知识，如风力涡轮机部件和先进太阳能技术。"
+            }
+        }
+    },
+    "QualityBadge": {
+        "title": "品质保证",
+        "subtitle": "通过EuroSource采购的每件产品都符合严格的欧洲质量标准。"
+    },
     "Countries": {
         "Germany": "德国",
         "France": "法国",

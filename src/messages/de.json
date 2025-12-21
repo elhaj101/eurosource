@@ -111,6 +111,47 @@
         },
         "copyright": "© 2025 EuroSource. Alle Rechte vorbehalten."
     },
+    "EuropeanExports": {
+        "title": "Was exportiert Europa?",
+        "subtitle": "Europa führt den globalen Handel in hochwertigen Sektoren an. Greifen Sie über EuroSource direkt auf diese Branchen zu.",
+        "examplesLabel": "Beispiele:",
+        "industries": {
+            "engineering": {
+                "title": "Präzisionstechnik & Industriemaschinen",
+                "examples": "Industrieturbinen, Gabelstapler, Stromgeneratoren",
+                "description": "Europas Kraftwerk für zuverlässige, hochwertige Industrieausrüstung, unverzichtbar für die globale Infrastrukturentwicklung."
+            },
+            "fashion": {
+                "title": "Luxusmode & Designerwaren",
+                "examples": "Ledertaschen, Haute-Couture-Textilien, Edle Uhren",
+                "description": "Zugang zu prestigeträchtiger europäischer Handwerkskunst und innovativem Design bei hochwertigen Textilien, Leder und Premium-Accessoires."
+            },
+            "automotive": {
+                "title": "High-End Automobil & Mobilitätslösungen",
+                "examples": "Autos, Elektrofahrzeug-Batterien, Fortschrittliche Sicherheitssysteme",
+                "description": "Führende Position in der Automobiltechnik, fortschrittliche EV-Komponenten und innovative Mobilitätslösungen."
+            },
+            "food": {
+                "title": "Premium Lebensmittel & Getränke",
+                "examples": "Schokolade, Italienisches Olivenöl, Handwerkskäse",
+                "description": "Entdecken Sie nachgefragte, hochwertige europäische Marken, von Schokoladen und Spirituosen bis zu handwerklichem Käse und Bio-Produkten."
+            },
+            "pharma": {
+                "title": "Fortschrittliche Pharma & Biotech",
+                "examples": "Impfstoffe, Spezialisierte Medikamente, Biotechnologie-Kits",
+                "description": "Der am schnellsten wachsende High-Tech-Sektor der EU, der erstklassige medizinische Behandlungen und Forschung bietet."
+            },
+            "energy": {
+                "title": "Grüne Energie & Nachhaltige Technologie",
+                "examples": "Solarpaneele, Windturbinenblätter, Energiespeichersysteme",
+                "description": "Europäische Expertise in zukunftsorientierten, erneuerbaren Energiekomponenten wie Windturbinenteile und fortschrittliche Solartechnologie."
+            }
+        }
+    },
+    "QualityBadge": {
+        "title": "Qualität Garantiert",
+        "subtitle": "Jedes über EuroSource bezogene Produkt erfüllt strenge europäische Qualitätsstandards."
+    },
     "Countries": {
         "Germany": "Deutschland",
         "France": "Frankreich",

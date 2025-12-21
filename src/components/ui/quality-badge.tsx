@@ -1,7 +1,7 @@
 "use client";
 
 import React, { MouseEvent, useEffect, useRef, useState } from "react";
-import { ShieldCheck } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 const identityMatrix =
   "1, 0, 0, 0, " +
@@ -14,7 +14,11 @@ const minRotate = -0.25;
 const maxScale = 1;
 const minScale = 0.97;
 
-export const QualityBadge = () => {
+interface QualityBadgeProps {
+  title?: string;
+}
+
+export const QualityBadge = ({ title = "Quality Guaranteed" }: QualityBadgeProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [firstOverlayPosition, setFirstOverlayPosition] = useState<number>(0);
   const [matrix, setMatrix] = useState<string>(identityMatrix);
@@ -214,8 +218,8 @@ export const QualityBadge = () => {
           <text fontFamily="system-ui, -apple-system, sans-serif" fontSize="11" fontWeight="500" fill="#94a3b8" x="60" y="28">
             EUROSOURCE
           </text>
-          <text fontFamily="system-ui, -apple-system, sans-serif" fontSize="20" fontWeight="700" fill="#f8fafc" x="60" y="52">
-            Quality Guaranteed
+          <text fontFamily="system-ui, -apple-system, sans-serif" fontSize="18" fontWeight="700" fill="#f8fafc" x="60" y="52">
+            {title}
           </text>
           
           <g style={{ mixBlendMode: "overlay" }} mask="url(#qualityMask)">
@@ -257,13 +261,15 @@ export const QualityBadge = () => {
 };
 
 export function QualityGuaranteeSection() {
+  const t = useTranslations('QualityBadge');
+  
   return (
     <section className="w-full py-16 lg:py-20 bg-white">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center justify-center text-center">
-          <QualityBadge />
+          <QualityBadge title={t('title')} />
           <p className="mt-6 text-gray-600 max-w-md">
-            Every product sourced through EuroSource meets rigorous European quality standards.
+            {t('subtitle')}
           </p>
         </div>
       </div>

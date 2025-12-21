@@ -111,6 +111,47 @@
         },
         "copyright": "© 2025 EuroSource. All rights reserved."
     },
+    "EuropeanExports": {
+        "title": "What does Europe export?",
+        "subtitle": "Europe leads global trade in high-value sectors. Access these industries directly through EuroSource.",
+        "examplesLabel": "Examples:",
+        "industries": {
+            "engineering": {
+                "title": "Precision Engineering & Industrial Machinery",
+                "examples": "Industrial turbines, Forklifters, Power generators",
+                "description": "Europe's powerhouse for reliable, high-spec industrial equipment, essential for global infrastructure development."
+            },
+            "fashion": {
+                "title": "Luxury Fashion & Designer Goods",
+                "examples": "Leather handbags, Haute couture textiles, Fine watches",
+                "description": "Access prestigious European craftsmanship and cutting-edge design in high-end textiles, leather, and premium accessories."
+            },
+            "automotive": {
+                "title": "High-End Automotive & Mobility Solutions",
+                "examples": "Cars, Electric vehicle batteries, Advanced safety systems",
+                "description": "Source leadership in automotive engineering, advanced EV components, and innovative mobility solutions."
+            },
+            "food": {
+                "title": "Premium Food & Beverage",
+                "examples": "Chocolate, Italian olive oil, Artisanal cheeses",
+                "description": "Discover high-demand, high-quality European brands, from chocolates and spirits to artisanal cheeses and organic products."
+            },
+            "pharma": {
+                "title": "Advanced Pharmaceutical & Biotech",
+                "examples": "Vaccines, Specialized medications, Biotechnology kits",
+                "description": "The EU's fastest-growing high-tech sector, providing world-class medical treatments and research."
+            },
+            "energy": {
+                "title": "Green Energy & Sustainable Technology",
+                "examples": "Solar panels, Wind turbine blades, Energy storage systems",
+                "description": "Source European expertise in future-focused, renewable energy components like wind turbine parts and advanced solar technology."
+            }
+        }
+    },
+    "QualityBadge": {
+        "title": "Quality Guaranteed",
+        "subtitle": "Every product sourced through EuroSource meets rigorous European quality standards."
+    },
     "Countries": {
         "Germany": "Germany",
         "France": "France",
