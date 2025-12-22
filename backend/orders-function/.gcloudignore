@@ -1,0 +1,14 @@
+# dependencies
+node_modules/
+# logs
+npm-debug.log
+
+# source maps
+*.map
+
+# editor
+.vscode/
+.DS_Store
+
+# build artifacts
+*.zip

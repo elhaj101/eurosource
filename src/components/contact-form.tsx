@@ -47,7 +47,6 @@ export function ContactForm() {
     // Check honeypot
     if (formData.honeypot) {
       return;
-      return;
     }
 
     // Validate required fields
@@ -64,11 +63,19 @@ export function ContactForm() {
     setIsLoading(true);
 
     try {
+      const endpoint = process.env.NEXT_PUBLIC_ORDERS_ENDPOINT;
+      const sharedSecret = process.env.NEXT_PUBLIC_ORDERS_SHARED_SECRET;
 
-      setSubmitted(true);
+      const payload = {
+        timestamp: new Date().toISOString(),
+        ...formData,
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+        locale: typeof document !== 'undefined' ? document.documentElement.lang : 'en',
+      };
 
-      setTimeout(() => {
-        setSubmitted(false);
+      if (!endpoint) {
+        console.warn("NEXT_PUBLIC_ORDERS_ENDPOINT is not set. Simulating success.");
+        setSubmitted(true);
         setFormData({
           entityType: "",
           companyName: "",
@@ -81,9 +88,41 @@ export function ContactForm() {
           contactMethod: "",
           honeypot: "",
         });
-      }, 3000);
+        return;
+      }
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(sharedSecret ? { "X-Auth": sharedSecret } : {}),
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("Order submission failed:", res.status, text);
+        alert("We couldn't submit your request right now. Please try again later.");
+        return;
+      }
+
+      setSubmitted(true);
+      setFormData({
+        entityType: "",
+        companyName: "",
+        country: "",
+        email: "",
+        phone: "",
+        productName: "",
+        productDetails: "",
+        budget: "",
+        contactMethod: "",
+        honeypot: "",
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
+      alert("Unexpected error. Please try again.");
     } finally {
       setIsLoading(false);
     }
