@@ -144,9 +144,9 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-3">{tFooter('headers.company')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/about-us" className="hover:text-blue-400">{tFooter('links.about')}</a></li>
-                <li><a href="/careers" className="hover:text-blue-400">{tFooter('links.careers')}</a></li>
-                <li><a href="/collaboration" className="hover:text-blue-400">{tFooter('links.collaboration')}</a></li>
+                <li><a href={`/${locale}/about-us`} className="hover:text-blue-400">{tFooter('links.about')}</a></li>
+                <li><a href={`/${locale}/careers`} className="hover:text-blue-400">{tFooter('links.careers')}</a></li>
+                <li><a href={`/${locale}/collaboration`} className="hover:text-blue-400">{tFooter('links.collaboration')}</a></li>
               </ul>
             </div>
             <div>
@@ -158,9 +158,9 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-3">{tFooter('headers.resources')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-blue-400">{tFooter('links.blog')}</a></li>
-                <li><a href="#" className="hover:text-blue-400">{tFooter('links.faq')}</a></li>
-                <li><a href="#" className="hover:text-blue-400">{tFooter('links.support')}</a></li>
+                <li><span className="text-gray-500 cursor-not-allowed">{tFooter('links.blog')}</span></li>
+                <li><span className="text-gray-500 cursor-not-allowed">{tFooter('links.faq')}</span></li>
+                <li><span className="text-gray-500 cursor-not-allowed">{tFooter('links.support')}</span></li>
               </ul>
             </div>
           </div>
