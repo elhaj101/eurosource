@@ -59,7 +59,7 @@ jobs:
 
       - name: Install function deps
         working-directory: backend/orders-function
-        run: npm ci
+        run: npm install --omit=dev
 
       - name: Deploy Cloud Function (Gen2)
         working-directory: backend/orders-function
