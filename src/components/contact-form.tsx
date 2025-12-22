@@ -8,15 +8,13 @@ export function ContactForm() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const [formData, setFormData] = useState({
-    entityType: "", // "company" or "individual"
-    companyName: "",
-    country: "",
+    fullName: "",
     email: "",
     phone: "",
-    productName: "",
-    productDetails: "",
-    budget: "",
-    contactMethod: "", // "email" or "whatsapp"
+    company: "",
+    country: "",
+    subject: "",
+    message: "",
     honeypot: "",
   });
 
@@ -24,23 +22,13 @@ export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value, type } = e.target;
-
-    if (type === "radio") {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,13 +40,8 @@ export function ContactForm() {
     }
 
     // Validate required fields
-    if (!formData.entityType || !formData.email || !formData.budget || !formData.contactMethod) {
+    if (!formData.fullName || !formData.email || !formData.country || !formData.subject || !formData.message) {
       alert("Please fill in all required fields");
-      return;
-    }
-
-    if (formData.entityType === "company" && (!formData.companyName || !formData.country || !formData.phone)) {
-      alert("Please fill in all company required fields");
       return;
     }
 
@@ -72,27 +55,15 @@ export function ContactForm() {
       form.target = 'hidden_iframe';
       form.style.display = 'none';
 
-      // Add all form fields as hidden inputs
-      // Map values to match EXACT Google Form option text
-      const budgetMap: Record<string, string> = {
-        "under-5k": "under 5,000",
-        "5k-10k": "5,000 - 10,000",
-        "10k-25k": "10,000 - 25,000",
-        "25k-50k": "25,000 - 50,000",
-        "50k-100k": "50,000 - 100,000",
-        "100k+": "100,000+"
-      };
-
+      // Map form fields to Google Form entry IDs
       const fields: Record<string, string> = {
-        'entry.377608779': formData.entityType === 'company' ? 'Yes, I represent a company' : "No, I'm an individual",
-        'entry.275916791': formData.companyName || '',
-        'entry.952443479': formData.country || '',
+        'entry.377608779': formData.fullName,
         'entry.246526021': formData.email,
         'entry.218981205': formData.phone || '',
-        'entry.378912780': formData.productName || '',
-        'entry.1546397977': formData.productDetails || '',
-        'entry.1663388540': budgetMap[formData.budget] || formData.budget,
-        'entry.545241450': formData.contactMethod, // Send as-is: "email" or "whatsapp"
+        'entry.275916791': formData.company || '',
+        'entry.952443479': formData.country || '',
+        'entry.378912780': formData.subject,
+        'entry.1546397977': formData.message,
       };
 
       Object.entries(fields).forEach(([name, value]) => {
@@ -115,15 +86,13 @@ export function ContactForm() {
 
       setSubmitted(true);
       setFormData({
-        entityType: "",
-        companyName: "",
-        country: "",
+        fullName: "",
         email: "",
         phone: "",
-        productName: "",
-        productDetails: "",
-        budget: "",
-        contactMethod: "",
+        company: "",
+        country: "",
+        subject: "",
+        message: "",
         honeypot: "",
       });
     } catch (error) {
@@ -166,7 +135,7 @@ export function ContactForm() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
+              <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
                 {/* Honeypot field */}
                 <input
                   type="text"
@@ -178,103 +147,27 @@ export function ContactForm() {
                   autoComplete="off"
                 />
 
-                {/* Entity Type */}
+                {/* Full Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-4">
-                    {t('entityType')} <span className="text-red-500">*</span>
+                  <label
+                    htmlFor="fullName"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    {t('fullName')} <span className="text-red-500">*</span>
                   </label>
-                  <div className="flex gap-6">
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="entityType"
-                        value="company"
-                        checked={formData.entityType === "company"}
-                        onChange={handleChange}
-                        className="w-4 h-4 mr-3"
-                      />
-                      <span className="text-gray-300">{t('yesCompany')}</span>
-                    </label>
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="entityType"
-                        value="individual"
-                        checked={formData.entityType === "individual"}
-                        onChange={handleChange}
-                        className="w-4 h-4 mr-3"
-                      />
-                      <span className="text-gray-300">{t('noIndividual')}</span>
-                    </label>
-                  </div>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    placeholder={t('fullNamePlaceholder')}
+                  />
                 </div>
 
-                {/* Company Fields (conditional) */}
-                {formData.entityType === "company" && (
-                  <div className="space-y-6 border-l-2 border-blue-500 pl-6">
-                    {/* Company Name */}
-                    <div>
-                      <label
-                        htmlFor="companyName"
-                        className="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        {t('companyName')} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="companyName"
-                        name="companyName"
-                        value={formData.companyName}
-                        onChange={handleChange}
-                        required={formData.entityType === "company"}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                        placeholder={t('companyNamePlaceholder')}
-                      />
-                    </div>
-
-                    {/* Country */}
-                    <div>
-                      <label
-                        htmlFor="country"
-                        className="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        {t('country')} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="country"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        required={formData.entityType === "company"}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                        placeholder={t('countryPlaceholder')}
-                      />
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        {t('phone')} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required={formData.entityType === "company"}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                        placeholder={t('phonePlaceholder')}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Email (always required) */}
+                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -294,106 +187,102 @@ export function ContactForm() {
                   />
                 </div>
 
-                {/* Product Information Section */}
-                <div className="border-t border-gray-700 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-300 mb-4">
-                    {t('productInfo')} <span className="text-sm text-gray-500">{t('optional')}</span>
-                  </h3>
-
-                  {/* Product Name */}
-                  <div className="mb-6">
-                    <label
-                      htmlFor="productName"
-                      className="block text-sm font-medium text-gray-300 mb-2"
-                    >
-                      {t('productName')}
-                    </label>
-                    <input
-                      type="text"
-                      id="productName"
-                      name="productName"
-                      value={formData.productName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                      placeholder={t('productNamePlaceholder')}
-                    />
-                  </div>
-
-                  {/* Product Details */}
-                  <div>
-                    <label
-                      htmlFor="productDetails"
-                      className="block text-sm font-medium text-gray-300 mb-2"
-                    >
-                      {t('productDetails')}
-                    </label>
-                    <textarea
-                      id="productDetails"
-                      name="productDetails"
-                      value={formData.productDetails}
-                      onChange={handleChange}
-                      rows={4}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition resize-none"
-                      placeholder={t('productDetailsPlaceholder')}
-                    />
-                  </div>
-                </div>
-
-                {/* Budget */}
+                {/* Phone (Optional) */}
                 <div>
                   <label
-                    htmlFor="budget"
+                    htmlFor="phone"
                     className="block text-sm font-medium text-gray-300 mb-2"
                   >
-                    {t('budget')} <span className="text-red-500">*</span>
+                    {t('phone')} <span className="text-gray-500 text-xs">{t('optional')}</span>
                   </label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500 transition"
-                  >
-                    <option value="">{t('selectBudget')}</option>
-                    <option value="under-5k">Under $5,000</option>
-                    <option value="5k-10k">$5,000 - $10,000</option>
-                    <option value="10k-25k">$10,000 - $25,000</option>
-                    <option value="25k-50k">$25,000 - $50,000</option>
-                    <option value="50k-100k">$50,000 - $100,000</option>
-                    <option value="100k+">$100,000+</option>
-                  </select>
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    placeholder={t('phonePlaceholder')}
+                  />
                 </div>
 
-                {/* Contact Method */}
+                {/* Company (Optional) */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-4">
-                    {t('contactMethod')} <span className="text-red-500">*</span>
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    {t('company')} <span className="text-gray-500 text-xs">{t('optional')}</span>
                   </label>
-                  <div className="flex gap-6">
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value="email"
-                        checked={formData.contactMethod === "email"}
-                        onChange={handleChange}
-                        className="w-4 h-4 mr-3"
-                      />
-                      <span className="text-gray-300">Email</span>
-                    </label>
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value="whatsapp"
-                        checked={formData.contactMethod === "whatsapp"}
-                        onChange={handleChange}
-                        className="w-4 h-4 mr-3"
-                      />
-                      <span className="text-gray-300">WhatsApp</span>
-                    </label>
-                  </div>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    placeholder={t('companyPlaceholder')}
+                  />
+                </div>
+
+                {/* Country */}
+                <div>
+                  <label
+                    htmlFor="country"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    {t('country')} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    placeholder={t('countryPlaceholder')}
+                  />
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    {t('subject')} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    placeholder={t('subjectPlaceholder')}
+                  />
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    {t('message')} <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition resize-none"
+                    placeholder={t('messagePlaceholder')}
+                  />
                 </div>
 
                 {/* Submit Button */}
