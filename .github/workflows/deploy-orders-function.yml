@@ -57,10 +57,6 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Install function deps
-        working-directory: backend/orders-function
-        run: npm install --omit=dev
-
       - name: Deploy Cloud Function (Gen2)
         working-directory: backend/orders-function
         run: |
