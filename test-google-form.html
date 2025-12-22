@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Form Test</title>
+</head>
+<body>
+    <h1>Test Google Form Submission</h1>
+    <button onclick="testSubmit()">Test Submit</button>
+    <div id="result"></div>
+
+    <script>
+        async function testSubmit() {
+            const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdSs_m4wi7gyHN3CrzAUcLVP4jBmmXDAghslEQQ-gDK7V94rg/formResponse";
+            
+            const formBody = new URLSearchParams();
+            formBody.append("entry.377608779", "company"); // Entity Type
+            formBody.append("entry.275916791", "Test Company"); // Company Name
+            formBody.append("entry.952443479", "Germany"); // Country
+            formBody.append("entry.246526021", "test@example.com"); // Email
+            formBody.append("entry.218981205", "+49123456"); // Phone
+            formBody.append("entry.378912780", "Test Product"); // Product Name
+            formBody.append("entry.1546397977", "Test Details"); // Product Details
+            formBody.append("entry.1663388540", "under-5k"); // Budget
+            formBody.append("entry.545241450", "email"); // Contact Method
+
+            try {
+                await fetch(GOOGLE_FORM_ACTION, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: formBody.toString(),
+                });
+                document.getElementById('result').innerHTML = '<p style="color: green;">Form submitted! Check your Google Form responses.</p>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>
