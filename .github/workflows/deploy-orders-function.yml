@@ -1,0 +1,86 @@
+name: Deploy Orders Function
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: GCP Project ID
+        required: true
+        type: string
+        default: eurosource-481922
+      region:
+        description: Region (e.g., europe-west3)
+        required: true
+        type: string
+        default: europe-west3
+      spreadsheet_id:
+        description: Google Sheet ID
+        required: true
+        type: string
+        default: 1fSZ9bOa09NXNdrgozXtJlNoeV5-PDNZY5kJzwdcccZQ
+      sheet_name:
+        description: Sheet tab name
+        required: true
+        type: string
+        default: orders
+      shared_secret:
+        description: Shared secret for X-Auth
+        required: true
+        type: string
+        default: orders-secret-elhaj-2025
+      allowed_origins:
+        description: Comma-separated allowed origins or *
+        required: false
+        type: string
+        default: "*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: '20'
+
+      - name: Auth to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Install function deps
+        working-directory: backend/orders-function
+        run: npm ci
+
+      - name: Deploy Cloud Function (Gen2)
+        working-directory: backend/orders-function
+        run: |
+          gcloud functions deploy orders-handler \
+            --gen2 \
+            --runtime=nodejs20 \
+            --region=${{ inputs.region }} \
+            --source=. \
+            --entry-point=handler \
+            --trigger-http \
+            --allow-unauthenticated \
+            --set-env-vars=SPREADSHEET_ID=${{ inputs.spreadsheet_id }},SHEET_NAME=${{ inputs.sheet_name }},SHARED_SECRET=${{ inputs.shared_secret }},ALLOWED_ORIGINS=${{ inputs.allowed_origins }} \
+            --project=${{ inputs.project_id }}
+
+      - name: Get Function URL
+        id: describe
+        run: |
+          URL=$(gcloud functions describe orders-handler --gen2 --region=${{ inputs.region }} --project=${{ inputs.project_id }} --format="value(serviceConfig.uri)")
+          echo "function_url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Summary
+        run: |
+          echo "Function URL: ${{ steps.describe.outputs.function_url }}" >> $GITHUB_STEP_SUMMARY
