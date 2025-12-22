@@ -2,6 +2,7 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSelectorDropdown } from "@/components/ui/language-selector-dropdown";
+import Link from "next/link";
 
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
@@ -144,9 +145,9 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-3">{tFooter('headers.company')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href={`/${locale}/about-us`} className="hover:text-blue-400">{tFooter('links.about')}</a></li>
-                <li><a href={`/${locale}/careers`} className="hover:text-blue-400">{tFooter('links.careers')}</a></li>
-                <li><a href={`/${locale}/collaboration`} className="hover:text-blue-400">{tFooter('links.collaboration')}</a></li>
+                <li><Link href={`/${locale}/about-us`} className="hover:text-blue-400">{tFooter('links.about')}</Link></li>
+                <li><Link href={`/${locale}/careers`} className="hover:text-blue-400">{tFooter('links.careers')}</Link></li>
+                <li><Link href={`/${locale}/collaboration`} className="hover:text-blue-400">{tFooter('links.collaboration')}</Link></li>
               </ul>
             </div>
             <div>
