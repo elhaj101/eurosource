@@ -91,23 +91,17 @@ export function ContactForm() {
         return;
       }
 
-      // If posting to Google Apps Script Web App, avoid CORS preflight by using form-encoded body
+      // For Google Apps Script, use GET to avoid CORS issues
       const isAppsScript = /script\.google(usercontent|)\.com/.test(endpoint);
 
-      const res = await fetch(endpoint, {
-        method: "POST",
+      const fetchUrl = isAppsScript
+        ? `${endpoint}?auth=${encodeURIComponent(sharedSecret || "")}&payload=${encodeURIComponent(JSON.stringify(payload))}`
+        : endpoint;
+
+      const res = await fetch(fetchUrl, {
+        method: isAppsScript ? "GET" : "POST",
         ...(isAppsScript
-          ? {
-              // Use no-cors to avoid CORS failures; treat as fire-and-forget
-              mode: "no-cors" as RequestMode,
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-              },
-              body: new URLSearchParams({
-                auth: sharedSecret || "",
-                payload: JSON.stringify(payload),
-              }).toString(),
-            }
+          ? {}
           : {
               headers: {
                 "Content-Type": "application/json",
@@ -124,6 +118,9 @@ export function ContactForm() {
           alert("We couldn't submit your request right now. Please try again later.");
           return;
         }
+      } else {
+        // For Apps Script GET requests, always treat as success
+        console.log("Form submitted to Apps Script endpoint");
       }
 
       setSubmitted(true);
