@@ -98,8 +98,9 @@ export function ContactForm() {
         method: "POST",
         ...(isAppsScript
           ? {
+              // Use no-cors to avoid CORS failures; treat as fire-and-forget
+              mode: "no-cors" as RequestMode,
               headers: {
-                // Simple request to avoid preflight
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
               },
               body: new URLSearchParams({
@@ -116,11 +117,13 @@ export function ContactForm() {
             }),
       });
 
-      if (!res.ok) {
-        const text = await res.text();
-        console.error("Order submission failed:", res.status, text);
-        alert("We couldn't submit your request right now. Please try again later.");
-        return;
+      if (!isAppsScript) {
+        if (!res.ok) {
+          const text = await res.text();
+          console.error("Order submission failed:", res.status, text);
+          alert("We couldn't submit your request right now. Please try again later.");
+          return;
+        }
       }
 
       setSubmitted(true);
