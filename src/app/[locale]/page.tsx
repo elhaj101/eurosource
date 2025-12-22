@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSelectorDropdown } from "@/components/ui/language-selector-dropdown";
 
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Hero } from "@/components/ui/hero";
 import { CyclingCountry } from "@/components/ui/cycling-country";
 import { Features } from "@/components/ui/features-4";
@@ -19,6 +19,7 @@ const IconCloudDemo = dynamic(
 );
 
 export default function Home() {
+  const [showMobileLang, setShowMobileLang] = useState(true);
   const locale = useLocale();
   const tHero = useTranslations('Hero');
   const tNav = useTranslations('Navigation');
@@ -32,6 +33,16 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    const onScroll = () => {
+      const threshold = window.innerHeight * 0.9; // first frame
+      setShowMobileLang(window.scrollY < threshold);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Logo - Fixed top-left with fade-in */}
@@ -39,15 +50,22 @@ export default function Home() {
         <h1 className="text-3xl md:text-4xl font-bold text-white">EuroSource</h1>
       </div>
 
-      {/* Language Selector - Fixed position */}
-      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40">
+      {/* Language Selector */}
+      {/* Desktop: top center */}
+      <div className="hidden md:block fixed top-6 left-1/2 -translate-x-1/2 z-40">
+        <LanguageSelectorDropdown />
+      </div>
+      {/* Mobile: bottom center, hide after first frame scroll */}
+      <div
+        className={`md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transition-all duration-200 ${showMobileLang ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
+      >
         <LanguageSelectorDropdown />
       </div>
 
       {/* Contact Button - Fixed top-right */}
       <button
         onClick={scrollToForm}
-        className="fixed top-6 right-6 z-40 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-md transition-colors duration-200 shadow-sm"
+        className="fixed top-4 md:top-6 right-4 md:right-6 z-40 px-3 py-1.5 text-xs md:px-5 md:py-2.5 md:text-sm bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-md transition-colors duration-200 shadow-sm"
       >
         {tNav('contact')}
       </button>
@@ -56,7 +74,7 @@ export default function Home() {
       <Hero
         backgroundImage="/shipping-container-eu-2.webp"
         title={<>{tHero('orderFrom')} <span className="inline-block w-48"><CyclingCountry /></span></>}
-        gradient={false}
+        gradient={true}
         titleClassName="text-5xl md:text-6xl lg:text-7xl text-white drop-shadow-lg"
         className="min-h-screen"
       />

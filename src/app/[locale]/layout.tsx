@@ -6,7 +6,6 @@ import { WebVitalsMonitor } from "@/components/web-vitals-monitor";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import "../globals.css";
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }, { locale: 'ar' }, { locale: 'zh' }];
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params
 }: {
@@ -82,35 +81,23 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="canonical" href="https://eurosource.de" />
-      </head>
-      <body
-        className={`${dmSans.variable} antialiased`}
-        style={{ fontFamily: 'var(--font-dm-sans), system-ui, sans-serif' }}
-      >
-        <NextIntlClientProvider messages={messages}>
-          <WebVitalsMonitor />
-          <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
-        </NextIntlClientProvider>
-        {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+    <NextIntlClientProvider messages={messages}>
+      <WebVitalsMonitor />
+      <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
+      {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);} 
+          gtag('js', new Date());
 
-            gtag('config', 'G-MEASUREMENT_ID');
-          `}
-        </Script>
-      </body>
-    </html>
+          gtag('config', 'G-MEASUREMENT_ID');
+        `}
+      </Script>
+    </NextIntlClientProvider>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+import "./globals.css";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -9,7 +9,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "EuroSource | Order Quality Products from Germany",
-  description: "Order quality products directly from Germany and Europe. Supplier sourcing, logistics, customs clearance, and manufacturing solutions.",
+  description:
+    "Order quality products directly from Germany and Europe. Supplier sourcing, logistics, customs clearance, and manufacturing solutions.",
 };
 
 export default function RootLayout({
@@ -17,5 +18,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
 }
