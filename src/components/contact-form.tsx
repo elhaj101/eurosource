@@ -91,13 +91,29 @@ export function ContactForm() {
         return;
       }
 
+      // If posting to Google Apps Script Web App, avoid CORS preflight by using form-encoded body
+      const isAppsScript = /script\.google(usercontent|)\.com/.test(endpoint);
+
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(sharedSecret ? { "X-Auth": sharedSecret } : {}),
-        },
-        body: JSON.stringify(payload),
+        ...(isAppsScript
+          ? {
+              headers: {
+                // Simple request to avoid preflight
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+              },
+              body: new URLSearchParams({
+                auth: sharedSecret || "",
+                payload: JSON.stringify(payload),
+              }).toString(),
+            }
+          : {
+              headers: {
+                "Content-Type": "application/json",
+                ...(sharedSecret ? { "X-Auth": sharedSecret } : {}),
+              },
+              body: JSON.stringify(payload),
+            }),
       });
 
       if (!res.ok) {

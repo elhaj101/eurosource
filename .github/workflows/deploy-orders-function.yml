@@ -17,7 +17,7 @@ on:
         description: Google Sheet ID
         required: true
         type: string
-        default: 1fSZ9bOa09NXNdrgozXtJlNoeV5-PDNZY5kJzwdcccZQ
+        default: 1pMD7BqKmX3cCiWh6NND4c8lygEKKzga-Tb3Eyhm3nyY
       sheet_name:
         description: Sheet tab name
         required: true

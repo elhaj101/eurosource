@@ -8,6 +8,7 @@ const {
   SHEET_NAME = 'Orders',
   SHARED_SECRET = '',
   ALLOWED_ORIGINS = '*', // comma-separated list or *
+  DRY_RUN = 'false'
 } = process.env;
 
 const app = express();
@@ -70,18 +71,22 @@ app.post('/', async (req, res) => {
       body.userAgent || ''
     ];
 
-    // Auth using the Function's default service account (ADC)
-    const auth = await google.auth.getClient({
-      scopes: ['https://www.googleapis.com/auth/spreadsheets']
-    });
-    const sheets = google.sheets({ version: 'v4', auth });
+    if (DRY_RUN === 'true') {
+      console.log('[DRY_RUN] Would append row:', row);
+    } else {
+      // Auth using the Function's default service account (ADC)
+      const auth = await google.auth.getClient({
+        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+      });
+      const sheets = google.sheets({ version: 'v4', auth });
 
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:Z`,
-      valueInputOption: 'RAW',
-      requestBody: { values: [row] }
-    });
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!A:Z`,
+        valueInputOption: 'RAW',
+        requestBody: { values: [row] }
+      });
+    }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
