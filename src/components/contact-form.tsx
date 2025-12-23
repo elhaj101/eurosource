@@ -88,7 +88,9 @@ export function ContactForm() {
       console.log("Form submitted to Google Forms");
 
       // Redirect to thank you page after submission
-      router.push(`/${locale}/thank-you`);
+      setTimeout(() => {
+        router.push(`/${locale}/thank-you`);
+      }, 500);
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Network error. Please check your connection and try again.");
