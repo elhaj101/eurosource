@@ -102,8 +102,12 @@
             "support": "Support"
         },
         "contact": {
-            "basedIn": "Based in Germany, Berlin"
+            "basedIn": "Based in Germany, Berlin",
+            "address": "Blasewitzer Ring 28",
+            "email": "alielhajj@outlook.de",
+            "emailLabel": "Email"
         },
+        "brandName": "EuroSource",
         "copyright": "© 2025 EuroSource. All rights reserved."
     },
     "EuropeanExports": {
@@ -234,5 +238,10 @@
         "ctaTitle": "Let's Grow Together",
         "ctaDesc": "We're always open to new partnerships that can add value for our clients.",
         "ctaButton": "Start a Conversation"
+    },
+    "ThankYou": {
+        "title": "Thank You!",
+        "subtitle": "Your message has been received. We appreciate your interest and will respond as soon as possible.",
+        "backHome": "Back to Home"
     }
 }

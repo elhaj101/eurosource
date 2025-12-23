@@ -24,7 +24,6 @@ export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: Qu
   const ref = useRef<HTMLDivElement>(null);
   const [firstOverlayPosition, setFirstOverlayPosition] = useState<number>(0);
   const [matrix, setMatrix] = useState<string>(identityMatrix);
-  const [currentMatrix, setCurrentMatrix] = useState<string>(identityMatrix);
   const [disableInOutOverlayAnimation, setDisableInOutOverlayAnimation] = useState<boolean>(true);
   const [disableOverlayAnimation, setDisableOverlayAnimation] = useState<boolean>(false);
   const [isTimeoutFinished, setIsTimeoutFinished] = useState<boolean>(false);
@@ -116,6 +115,15 @@ export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: Qu
     setTimeout(() => setIsTimeoutFinished(true), 200);
   };
 
+  useEffect(() => {
+    return () => {
+      if (enterTimeout.current) clearTimeout(enterTimeout.current);
+      if (leaveTimeout1.current) clearTimeout(leaveTimeout1.current);
+      if (leaveTimeout2.current) clearTimeout(leaveTimeout2.current);
+      if (leaveTimeout3.current) clearTimeout(leaveTimeout3.current);
+    };
+  }, []);
+
   const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const { left, right, top, bottom } = getDimensions();
     const xCenter = (left + right) / 2;
@@ -124,7 +132,7 @@ export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: Qu
     setTimeout(() => setFirstOverlayPosition((Math.abs(xCenter - e.clientX) + Math.abs(yCenter - e.clientY)) / 1.5), 150);
 
     if (isTimeoutFinished) {
-      setCurrentMatrix(getMatrix(e.clientX, e.clientY));
+      setMatrix(getMatrix(e.clientX, e.clientY));
     }
   };
 
@@ -133,8 +141,8 @@ export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: Qu
 
     if (enterTimeout.current) clearTimeout(enterTimeout.current);
 
-    setCurrentMatrix(oppositeMatrix);
-    setTimeout(() => setCurrentMatrix(identityMatrix), 200);
+    setMatrix(oppositeMatrix);
+    setTimeout(() => setMatrix(identityMatrix), 200);
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -148,12 +156,6 @@ export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: Qu
       });
     });
   };
-
-  useEffect(() => {
-    if (isTimeoutFinished) {
-      setMatrix(currentMatrix);
-    }
-  }, [currentMatrix, isTimeoutFinished]);
 
   const overlayAnimations = [...Array(10).keys()].map((e) => (
     `
@@ -196,39 +198,40 @@ export const QualityBadge = ({ title = "Quality Guaranteed", isRtl = false }: Qu
           </defs>
           <rect width="300" height="70" rx="12" fill="url(#qualityGradient)" />
           <rect x="3" y="3" width="294" height="64" rx="10" fill="transparent" stroke="#475569" strokeWidth="1" />
-          
+
           {/* Shield Icon - centered */}
           <g transform="translate(138, 12)">
-            <path 
-              d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" 
-              fill="none" 
-              stroke="#22c55e" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
+            <path
+              d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+              fill="none"
+              stroke="#22c55e"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <path 
-              d="M9 12l2 2 4-4" 
-              fill="none" 
-              stroke="#22c55e" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
+            <path
+              d="M9 12l2 2 4-4"
+              fill="none"
+              stroke="#22c55e"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeLinejoin="round"
             />
           </g>
-          
-          <text 
-            fontFamily="system-ui, -apple-system, sans-serif" 
-            fontSize="18" 
-            fontWeight="700" 
-            fill="#f8fafc" 
-            x="150" 
+
+          <text
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fontSize="18"
+            fontWeight="700"
+            fill="#f8fafc"
+            x="150"
             y="58"
             textAnchor="middle"
+            direction={isRtl ? 'rtl' : 'ltr'}
           >
             {title}
           </text>
-          
+
           <g style={{ mixBlendMode: "overlay" }} mask="url(#qualityMask)">
             {[...Array(10).keys()].map((i) => (
               <g
@@ -271,7 +274,7 @@ export function QualityGuaranteeSection() {
   const t = useTranslations('QualityBadge');
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  
+
   return (
     <section className="w-full py-16 lg:py-20 bg-white">
       <div className="container mx-auto max-w-7xl px-4">

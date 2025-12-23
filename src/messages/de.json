@@ -102,8 +102,12 @@
             "support": "Support"
         },
         "contact": {
-            "basedIn": "Ansässig in Deutschland, Berlin"
+            "basedIn": "Ansässig in Deutschland, Berlin",
+            "address": "Blasewitzer Ring 28",
+            "email": "alielhajj@outlook.de",
+            "emailLabel": "E-Mail"
         },
+        "brandName": "EuroSource",
         "copyright": "© 2025 EuroSource. Alle Rechte vorbehalten."
     },
     "EuropeanExports": {

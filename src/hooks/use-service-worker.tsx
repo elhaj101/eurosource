@@ -7,10 +7,10 @@ export function useServiceWorker() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/service-worker.js')
-        .then((registration) => {
+        .then(() => {
           // Service Worker registered successfully
         })
-        .catch((error) => {
+        .catch(() => {
           // Service Worker registration failed
         })
     }

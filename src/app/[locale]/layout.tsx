@@ -6,6 +6,7 @@ import { WebVitalsMonitor } from "@/components/web-vitals-monitor";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import "../globals.css";
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }, { locale: 'ar' }, { locale: 'zh' }];
@@ -80,24 +81,30 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
-  return (
-    <NextIntlClientProvider messages={messages}>
-      <WebVitalsMonitor />
-      <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
-      {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);} 
-          gtag('js', new Date());
+  const isRtl = locale === 'ar';
 
-          gtag('config', 'G-MEASUREMENT_ID');
-        `}
-      </Script>
-    </NextIntlClientProvider>
+  return (
+    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'}>
+      <body className={`${dmSans.className} antialiased`}>
+        <NextIntlClientProvider messages={messages}>
+          <WebVitalsMonitor />
+          <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
+          {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);} 
+              gtag('js', new Date());
+
+              gtag('config', 'G-MEASUREMENT_ID');
+            `}
+          </Script>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

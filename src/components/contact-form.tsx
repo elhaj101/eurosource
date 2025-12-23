@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from "next/navigation";
 
 export function ContactForm() {
   const t = useTranslations('Contact');
+  const locale = useLocale();
+  const router = useRouter();
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const [formData, setFormData] = useState({
@@ -18,7 +21,7 @@ export function ContactForm() {
     honeypot: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  // Remove submitted state, use router for redirect
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
@@ -84,17 +87,8 @@ export function ContactForm() {
 
       console.log("Form submitted to Google Forms");
 
-      setSubmitted(true);
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        company: "",
-        country: "",
-        subject: "",
-        message: "",
-        honeypot: "",
-      });
+      // Redirect to thank you page after submission
+      router.push(`/${locale}/thank-you`);
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Network error. Please check your connection and try again.");
@@ -125,176 +119,165 @@ export function ContactForm() {
               </p>
             </div>
 
-            {submitted ? (
-              <div className="text-center py-8 space-y-2">
-                <p className="text-lg font-semibold text-green-400">
-                  {t('successTitle')}
-                </p>
-                <p className="text-gray-400">
-                  {t('successSubtitle')}
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
-                {/* Honeypot field */}
+            <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
+              {/* Honeypot field */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
+              {/* Full Name */}
+              <div>
+                <label
+                  htmlFor="fullName"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  {t('fullName')} <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
-                  name="honeypot"
-                  value={formData.honeypot}
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
                   onChange={handleChange}
-                  style={{ display: "none" }}
-                  tabIndex={-1}
-                  autoComplete="off"
+                  required
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  placeholder={t('fullNamePlaceholder')}
                 />
+              </div>
 
-                {/* Full Name */}
-                <div>
-                  <label
-                    htmlFor="fullName"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('fullName')} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder={t('fullNamePlaceholder')}
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('email')} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder={t('emailPlaceholder')}
-                  />
-                </div>
-
-                {/* Phone (Optional) */}
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('phone')} <span className="text-gray-500 text-xs">{t('optional')}</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder={t('phonePlaceholder')}
-                  />
-                </div>
-
-                {/* Company (Optional) */}
-                <div>
-                  <label
-                    htmlFor="company"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('company')} <span className="text-gray-500 text-xs">{t('optional')}</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder={t('companyPlaceholder')}
-                  />
-                </div>
-
-                {/* Country */}
-                <div>
-                  <label
-                    htmlFor="country"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('country')} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder={t('countryPlaceholder')}
-                  />
-                </div>
-
-                {/* Subject */}
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('subject')} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                    placeholder={t('subjectPlaceholder')}
-                  />
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    {t('message')} <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition resize-none"
-                    placeholder={t('messagePlaceholder')}
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-semibold transition duration-200 text-lg"
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  {isLoading ? t('sending') : t('submit')}
-                </button>
-              </form>
-            )}
+                  {t('email')} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  placeholder={t('emailPlaceholder')}
+                />
+              </div>
+
+              {/* Phone (Optional) */}
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  {t('phone')} <span className="text-gray-500 text-xs">{t('optional')}</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  placeholder={t('phonePlaceholder')}
+                />
+              </div>
+
+              {/* Company (Optional) */}
+              <div>
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  {t('company')} <span className="text-gray-500 text-xs">{t('optional')}</span>
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  placeholder={t('companyPlaceholder')}
+                />
+              </div>
+
+              {/* Country */}
+              <div>
+                <label
+                  htmlFor="country"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  {t('country')} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  placeholder={t('countryPlaceholder')}
+                />
+              </div>
+
+              {/* Subject */}
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  {t('subject')} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  placeholder={t('subjectPlaceholder')}
+                />
+              </div>
+
+              {/* Message */}
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  {t('message')} <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition resize-none"
+                  placeholder={t('messagePlaceholder')}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-semibold transition duration-200 text-lg"
+              >
+                {isLoading ? t('sending') : t('submit')}
+              </button>
+            </form>
           </div>
         </div>
       </section>

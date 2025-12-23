@@ -13,6 +13,22 @@ interface WebVitalsMetrics {
 
 const metrics: Partial<WebVitalsMetrics> = {}
 
+declare global {
+  interface Window {
+    gtag?: (
+      command: 'event',
+      action: string,
+      params: {
+        event_category: string;
+        event_label: string;
+        value: number;
+        non_interaction: boolean;
+        [key: string]: string | number | boolean | undefined;
+      }
+    ) => void;
+  }
+}
+
 export function reportWebVitals(metric: { name: string; value: number; id: string }) {
   // Store metric
   metrics[metric.name as keyof WebVitalsMetrics] = metric.value
@@ -20,8 +36,8 @@ export function reportWebVitals(metric: { name: string; value: number; id: strin
   // Send to analytics endpoint
   if (typeof window !== 'undefined') {
     // Send to Google Analytics if initialized
-    if ((window as any).gtag) {
-      (window as any).gtag('event', metric.name, {
+    if (window.gtag) {
+      window.gtag('event', metric.name, {
         event_category: 'Web Vitals',
         event_label: metric.id,
         value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),

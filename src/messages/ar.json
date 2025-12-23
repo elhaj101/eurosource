@@ -102,8 +102,12 @@
             "support": "دعم"
         },
         "contact": {
-            "basedIn": "مقرها في ألمانيا، برلين"
+            "basedIn": "مقرها في ألمانيا، برلين",
+            "address": "Blasewitzer Ring 28",
+            "email": "alielhajj@outlook.de",
+            "emailLabel": "البريد الإلكتروني"
         },
+        "brandName": "EuroSource",
         "copyright": "© 2025 EuroSource. جميع الحقوق محفوظة."
     },
     "EuropeanExports": {

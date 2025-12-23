@@ -48,7 +48,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       {/* Logo - Fixed top-left with fade-in */}
       <div className="fixed top-6 left-6 z-40 animate-fade-in">
-        <h1 className="text-3xl md:text-4xl font-bold text-white">EuroSource</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-white">{tFooter('brandName')}</h1>
       </div>
 
       {/* Language Selector */}
@@ -139,7 +139,7 @@ export default function Home() {
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-3">EuroSource</h3>
+              <h3 className="text-lg font-semibold mb-3">{tFooter('brandName')}</h3>
               <p className="text-gray-400">{tFooter('brandDesc')}</p>
             </div>
             <div>
@@ -153,8 +153,8 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-3">{tFooter('headers.contact')}</h3>
               <p className="text-gray-400 mb-2">{tFooter('contact.basedIn')}</p>
-              <p className="text-gray-400 mb-2">Blasewitzer Ring 28</p>
-              <p className="text-gray-400">Email: <a href="mailto:alielhajj@outlook.de" className="text-blue-400 hover:text-blue-300">alielhajj@outlook.de</a></p>
+              <p className="text-gray-400 mb-2">{tFooter('contact.address')}</p>
+              <p className="text-gray-400">{tFooter('contact.emailLabel')}: <a href={`mailto:${tFooter('contact.email')}`} className="text-blue-400 hover:text-blue-300">{tFooter('contact.email')}</a></p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-3">{tFooter('headers.resources')}</h3>

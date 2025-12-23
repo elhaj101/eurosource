@@ -107,8 +107,12 @@
             "support": "支持"
         },
         "contact": {
-            "basedIn": "总部位于德国柏林"
+            "basedIn": "总部位于德国柏林",
+            "address": "Blasewitzer Ring 28",
+            "email": "alielhajj@outlook.de",
+            "emailLabel": "电子邮件"
         },
+        "brandName": "EuroSource",
         "copyright": "© 2025 EuroSource. 保留所有权利。"
     },
     "EuropeanExports": {
