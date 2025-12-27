@@ -238,5 +238,10 @@
         "ctaTitle": "Lassen Sie uns gemeinsam wachsen",
         "ctaDesc": "Wir sind immer offen für neue Partnerschaften, die unseren Kunden Mehrwert bieten.",
         "ctaButton": "Gespräch starten"
+    },
+    "ThankYou": {
+        "title": "Vielen Dank!",
+        "subtitle": "Ihre Nachricht ist eingegangen. Wir schätzen Ihr Interesse und werden so schnell wie möglich antworten.",
+        "backHome": "Zurück zur Startseite"
     }
 }
