@@ -60,7 +60,7 @@ export default function Home() {
       <div
         className={`md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transition-all duration-200 ${showMobileLang ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
       >
-        <LanguageSelectorDropdown />
+        <LanguageSelectorDropdown direction="up" />
       </div>
 
       {/* Contact Button - Fixed top-right */}

@@ -13,7 +13,7 @@ const languages = [
   { code: "zh", label: "中文", flag: "🇨🇳" },
 ];
 
-export function LanguageSelectorDropdown() {
+export function LanguageSelectorDropdown({ direction = "down" }: { direction?: "up" | "down" }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -61,7 +61,8 @@ export function LanguageSelectorDropdown() {
       {open && (
         <div
           className={cn(
-            "absolute left-0 mt-2 w-44 rounded-xl overflow-hidden z-50",
+            "absolute left-0 w-44 rounded-xl overflow-hidden z-50",
+            direction === 'up' ? 'bottom-full mb-2' : 'top-full mt-2',
             "bg-white/95 backdrop-blur-xl",
             "shadow-lg border border-gray-200",
             "animate-dropdown-fade-in"
