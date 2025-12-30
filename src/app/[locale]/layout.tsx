@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     creator: "@eurosource",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.ico?v=2",
   },
 };
 
