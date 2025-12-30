@@ -89,9 +89,9 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <WebVitalsMonitor />
           <ServiceWorkerProvider>{children}</ServiceWorkerProvider>
-          {/* Google Analytics - Replace G-MEASUREMENT_ID with your actual ID */}
+          {/* Google Analytics */}
           <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
+            src="https://www.googletagmanager.com/gtag/js?id=G-78C3LWXRP2"
             strategy="afterInteractive"
           />
           <Script id="google-analytics" strategy="afterInteractive">
@@ -100,7 +100,7 @@ export default async function LocaleLayout({
               function gtag(){dataLayer.push(arguments);} 
               gtag('js', new Date());
 
-              gtag('config', 'G-MEASUREMENT_ID');
+              gtag('config', 'G-78C3LWXRP2');
             `}
           </Script>
         </NextIntlClientProvider>
