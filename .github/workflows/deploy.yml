@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           protocol: ftps
-          security: false
+          security: loose
           # The local folder containing the built files (Next.js static export)
           local-dir: ./out/
           # The remote folder on Hostinger. Usually public_html is correct.
